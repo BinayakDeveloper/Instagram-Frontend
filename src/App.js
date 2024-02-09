@@ -38,7 +38,7 @@ function App() {
         <Route path="/dashboard/message" Component={Message} />
         <Route path="/dashboard/profile" Component={Profile} />
         <Route path="/dashboard/editprofile" Component={Editprofile} />
-        <Route path="/dashboard/:username" Component={User} />
+        <Route path="/dashboard/search/:username" Component={User} />
         <Route path="*" Component={Pnf} />
       </Routes>
     </Router>

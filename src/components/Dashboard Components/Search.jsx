@@ -158,7 +158,7 @@ function Searchuser({ users, searchUser, noUserText }) {
 function User({ username, name, profilePic, followers }) {
   return (
     <>
-      <Link to={`/dashboard/${username}`}>
+      <Link to={`/dashboard/search/${username}`}>
         <div className={searchcss.userContainer}>
           <div className={searchcss.userComponents}>
             <div className={searchcss.profilePic}>
