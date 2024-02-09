@@ -1,0 +1,28 @@
+.invalidContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+
+  > img {
+    height: 200px;
+    margin-bottom: -15px;
+  }
+
+  > p {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  > .homelink {
+    margin-top: 15px;
+    font-size: 1.5rem;
+    > p > a {
+      text-decoration: none;
+      color: rgb(0, 106, 255);
+      font-weight: bold;
+      letter-spacing: 0.8px;
+    }
+  }
+}
