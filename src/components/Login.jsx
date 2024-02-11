@@ -81,7 +81,7 @@ function Login() {
             </div>
             <div className={logincss.line}></div>
             <div className={logincss.forgot}>
-              <Link to={"/forgot-password"}>Bhul gaya kya lodu?</Link>
+              <Link to={"/forgot-password"}>Forgot password?</Link>
             </div>
           </div>
 
