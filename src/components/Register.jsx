@@ -18,12 +18,28 @@ function Register() {
     let token = localStorage.getItem("user-ssid-token-ig");
 
     if (token !== null) {
-      navigate("/dashboard");
+      async function tokenValidate() {
+        let tokenVerify = await axios.post(
+          "https://instaflixrootserver.vercel.app/verifyusertoken",
+          {
+            authkey: process.env.REACT_APP_AUTH_KEY,
+            token,
+          }
+        );
+        if (!tokenVerify.data.status) {
+          toast.error("Invalid token");
+          localStorage.removeItem("user-ssid-token-ig");
+        } else {
+          navigate("/dashboard");
+        }
+      }
+      tokenValidate();
     }
   }, [navigate]);
 
   async function registerValidate(e) {
     e.preventDefault();
+    e.target[5].textContent = "Signing up...";
     let number = e.target[0].value;
     let email = e.target[1].value;
     let name = e.target[2].value;
@@ -40,7 +56,10 @@ function Register() {
     };
 
     let validate = (
-      await axios.post("http://localhost:500/genusertoken", userObj)
+      await axios.post(
+        "https://instaflixrootserver.vercel.app/genusertoken",
+        userObj
+      )
     ).data;
 
     if (validate.status) {
@@ -48,6 +67,8 @@ function Register() {
     } else {
       toast.error(validate.response);
     }
+
+    e.target[5].textContent = "Sign up";
   }
 
   return (

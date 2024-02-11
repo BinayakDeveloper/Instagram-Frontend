@@ -17,18 +17,37 @@ function Forgot() {
     let token = localStorage.getItem("user-ssid-token-ig");
 
     if (token !== null) {
-      navigate("/dashboard");
+      async function tokenValidate() {
+        let tokenVerify = await axios.post(
+          "https://instaflixrootserver.vercel.app/verifyusertoken",
+          {
+            authkey: process.env.REACT_APP_AUTH_KEY,
+            token,
+          }
+        );
+        if (!tokenVerify.data.status) {
+          toast.error("Invalid token");
+          localStorage.removeItem("user-ssid-token-ig");
+        } else {
+          navigate("/dashboard");
+        }
+      }
+      tokenValidate();
     }
   }, [navigate]);
 
   async function forgotValidate(e) {
     e.preventDefault();
+    e.target[1].textContent = "Sending...";
 
     let forotResponse = (
-      await axios.post("http://localhost:500/genforgottoken", {
-        authkey: process.env.REACT_APP_AUTH_KEY,
-        data: e.target[0].value,
-      })
+      await axios.post(
+        "https://instaflixrootserver.vercel.app/genforgottoken",
+        {
+          authkey: process.env.REACT_APP_AUTH_KEY,
+          data: e.target[0].value,
+        }
+      )
     ).data;
 
     if (forotResponse.status) {
@@ -36,6 +55,8 @@ function Forgot() {
     } else {
       toast.error(forotResponse.response);
     }
+
+    e.target[1].textContent = "Send reset link";
   }
 
   return (

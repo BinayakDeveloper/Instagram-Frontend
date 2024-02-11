@@ -119,10 +119,11 @@
             width: 100%;
             text-decoration: none;
             color: black;
+            font-weight: bold;
             background-color: white;
             letter-spacing: 0.8px;
             border-radius: 5px;
-            padding: 5px 8px;
+            padding: 7px 15px;
 
             &:last-child {
               margin-left: 10px;
@@ -176,6 +177,7 @@
           > .userImg {
             > img {
               height: 130px;
+              width: 130px;
             }
           }
 

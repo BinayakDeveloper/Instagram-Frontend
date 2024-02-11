@@ -20,12 +20,28 @@ function Login() {
     let token = localStorage.getItem("user-ssid-token-ig");
 
     if (token !== null) {
-      navigate("/dashboard");
+      async function tokenValidate() {
+        let tokenVerify = await axios.post(
+          "https://instaflixrootserver.vercel.app/verifyusertoken",
+          {
+            authkey: process.env.REACT_APP_AUTH_KEY,
+            token,
+          }
+        );
+        if (!tokenVerify.data.status) {
+          toast.error("Invalid token");
+          localStorage.removeItem("user-ssid-token-ig");
+        } else {
+          navigate("/dashboard");
+        }
+      }
+      tokenValidate();
     }
   }, [navigate]);
 
   async function loginValidate(e) {
     e.preventDefault();
+    e.target[2].textContent = "Logging in...";
     let username = e.target[0].value;
     let password = e.target[1].value;
 
@@ -35,8 +51,9 @@ function Login() {
       password,
     };
 
-    let loginStatus = (await axios.post("http://localhost:500/login", userObj))
-      .data;
+    let loginStatus = (
+      await axios.post("https://instaflixrootserver.vercel.app/login", userObj)
+    ).data;
 
     if (loginStatus.status) {
       localStorage.setItem("user-ssid-token-ig", loginStatus.token);
@@ -44,6 +61,7 @@ function Login() {
     } else {
       toast.error(loginStatus.response);
     }
+    e.target[2].textContent = "Log in";
   }
 
   return (
@@ -74,8 +92,14 @@ function Login() {
                   placeholder="Phone number, username, or email"
                   autoComplete="on"
                   spellCheck="false"
+                  required
                 />
-                <input type="password" name="password" placeholder="Password" />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  required
+                />
                 <button type="submit">Log in</button>
               </form>
             </div>

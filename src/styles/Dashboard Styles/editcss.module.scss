@@ -215,6 +215,7 @@
 
         > .leftComponent > .oldPic > img {
           height: 50px;
+          width: 50px;
         }
         > .leftComponent > .userInfo {
           > p:first-child {
@@ -228,7 +229,7 @@
         > .rightComponent {
           > button {
             font-size: 12px;
-            padding: 5px;
+            padding: 7px 5px;
           }
         }
       }

@@ -25,18 +25,25 @@ function Otp() {
   useEffect(() => {
     async function getUserInfo() {
       let user = (
-        await axios.post("http://localhost:500/verifyusertoken", {
-          authkey: process.env.REACT_APP_AUTH_KEY,
-          token: usertoken,
-        })
+        await axios.post(
+          "https://instaflixrootserver.vercel.app/verifyusertoken",
+          {
+            authkey: process.env.REACT_APP_AUTH_KEY,
+            token: usertoken,
+          }
+        )
       ).data;
 
       if (user.status) {
+        console.log(user);
         setUserInfo(user.userInfo);
-        let otp = await axios.post("http://localhost:500/genotptoken", {
-          authkey: process.env.REACT_APP_AUTH_KEY,
-          userInfo: user.userInfo,
-        });
+        let otp = await axios.post(
+          "https://instaflixrootserver.vercel.app/genotptoken",
+          {
+            authkey: process.env.REACT_APP_AUTH_KEY,
+            userInfo: user.userInfo,
+          }
+        );
 
         if (otp.data.status) {
           setOtpToken(otp.data.otpToken);
@@ -56,11 +63,14 @@ function Otp() {
     let enteredOtp = e.target[0].value;
 
     let validateResponse = (
-      await axios.post("http://localhost:500/verifyotptoken", {
-        authkey: process.env.REACT_APP_AUTH_KEY,
-        enteredOtp,
-        otpToken,
-      })
+      await axios.post(
+        "https://instaflixrootserver.vercel.app/verifyotptoken",
+        {
+          authkey: process.env.REACT_APP_AUTH_KEY,
+          enteredOtp,
+          otpToken,
+        }
+      )
     ).data;
 
     if (validateResponse.status) {
@@ -72,15 +82,23 @@ function Otp() {
       }, 2000);
     } else {
       toast.error(validateResponse.response);
+      setTimeout(() => {
+        if (validateResponse.response.toLowerCase() === "already registered") {
+          navigate("/register");
+        }
+      }, 1000);
     }
   }
 
   async function resendOtp(e) {
     e.target.innerHTML = "sending otp...";
-    let otp = await axios.post("http://localhost:500/genotptoken", {
-      authkey: process.env.REACT_APP_AUTH_KEY,
-      userInfo: userInfo,
-    });
+    let otp = await axios.post(
+      "https://instaflixrootserver.vercel.app/genotptoken",
+      {
+        authkey: process.env.REACT_APP_AUTH_KEY,
+        userInfo: userInfo,
+      }
+    );
 
     if (otp.data.status) {
       setOtpToken(otp.data.otpToken);

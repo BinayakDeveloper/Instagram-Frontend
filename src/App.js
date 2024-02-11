@@ -13,11 +13,12 @@ import Create from "./components/Dashboard Components/Create";
 import Message from "./components/Dashboard Components/Message";
 import Profile from "./components/Dashboard Components/Profile";
 import User from "./components/Dashboard Components/User";
+import Editprofile from "./components/Dashboard Components/Editprofile";
+import Shareprofile from "./components/Dashboard Components/Shareprofile";
 
 // Stylesheets
 import "./styles/index.scss";
 import Pnf from "./components/Pnf";
-import Editprofile from "./components/Dashboard Components/Editprofile";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path="/dashboard/message" Component={Message} />
         <Route path="/dashboard/profile" Component={Profile} />
         <Route path="/dashboard/editprofile" Component={Editprofile} />
+        <Route path="/dashboard/shareprofile" Component={Shareprofile} />
         <Route path="/dashboard/search/:username" Component={User} />
         <Route path="*" Component={Pnf} />
       </Routes>

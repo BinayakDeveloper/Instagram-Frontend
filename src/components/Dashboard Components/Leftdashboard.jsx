@@ -19,7 +19,7 @@ function Leftdashboard() {
       <div className={leftcss.leftDashboardContainer}>
         <div className={leftcss.leftComponents}>
           <div className={leftcss.topComponents}>
-            <Link to={"/"}>
+            <Link to={"/dashboard"}>
               <img src={igImg} alt="igimg" />
               <FaInstagram />
             </Link>

@@ -6,6 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 // Components
 import Leftdashboard from "./Leftdashboard";
 import Dashboardnav from "./Dashboardnav";
+import Userloader from "./Userloader";
 
 // Style
 import searchcss from "../../styles/Dashboard Styles/search.module.scss";
@@ -20,6 +21,7 @@ function Search() {
   const [token, setToken] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [users, setUsers] = useState([]);
+  const [searchUserloaded, setSearchUserLoaded] = useState(true);
   const [noUserText, setNoUserText] = useState("");
 
   useEffect(() => {
@@ -32,10 +34,13 @@ function Search() {
     } else {
       async function getUserInfo() {
         let userData = (
-          await axios.post("http://localhost:500/getuserinfo", {
-            authkey: process.env.REACT_APP_AUTH_KEY,
-            usertoken: token,
-          })
+          await axios.post(
+            "https://instaflixrootserver.vercel.app/getuserinfo",
+            {
+              authkey: process.env.REACT_APP_AUTH_KEY,
+              usertoken: token,
+            }
+          )
         ).data;
 
         if (userData.status) {
@@ -59,16 +64,21 @@ function Search() {
     clearTimeout(timeout);
 
     timeout = setTimeout(() => {
+      setSearchUserLoaded(false);
+
       let inputValue = e.target.value;
 
       if (inputValue !== "") {
         async function getUser() {
           let users = (
-            await axios.post("http://localhost:500/searchuser", {
-              authkey: process.env.REACT_APP_AUTH_KEY,
-              username: inputValue,
-              token,
-            })
+            await axios.post(
+              "https://instaflixrootserver.vercel.app/searchuser",
+              {
+                authkey: process.env.REACT_APP_AUTH_KEY,
+                username: inputValue,
+                token,
+              }
+            )
           ).data;
           if (users.status) {
             setUsers(users.users);
@@ -82,7 +92,9 @@ function Search() {
         setUsers([]);
         setNoUserText("");
       }
-    }, 100);
+
+      setSearchUserLoaded(true);
+    }, 300);
   }
 
   return (
@@ -102,6 +114,7 @@ function Search() {
               users={users}
               searchUser={searchUser}
               noUserText={noUserText}
+              searchUserloaded={searchUserloaded}
             />
           ) : null}
         </div>
@@ -110,7 +123,7 @@ function Search() {
   );
 }
 
-function Searchuser({ users, searchUser, noUserText }) {
+function Searchuser({ users, searchUser, noUserText, searchUserloaded }) {
   return (
     <>
       <div className={searchcss.searchcontainer}>
@@ -133,20 +146,24 @@ function Searchuser({ users, searchUser, noUserText }) {
           </div>
 
           <div className={searchcss.users}>
-            {users.length !== 0 ? (
-              users.map((user, ind) => {
-                return (
-                  <User
-                    key={ind}
-                    username={user.username}
-                    name={user.name}
-                    profilePic={user.profilePic}
-                    followers={user.followers}
-                  />
-                );
-              })
+            {searchUserloaded ? (
+              users.length !== 0 ? (
+                users.map((user, ind) => {
+                  return (
+                    <User
+                      key={ind}
+                      username={user.username}
+                      name={user.name}
+                      profilePic={user.profilePic}
+                      followers={user.followers}
+                    />
+                  );
+                })
+              ) : (
+                <h1>{noUserText}</h1>
+              )
             ) : (
-              <h1>{noUserText}</h1>
+              <Userloader />
             )}
           </div>
         </div>

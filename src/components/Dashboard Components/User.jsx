@@ -22,17 +22,23 @@ function User() {
     } else {
       async function getSearchedUserData() {
         let userData = (
-          await axios.post("http://localhost:500/getsearchuserinfo", {
-            authkey: process.env.REACT_APP_AUTH_KEY,
-            usertoken: token,
-            username,
-          })
+          await axios.post(
+            "https://instaflixrootserver.vercel.app/getsearchuserinfo",
+            {
+              authkey: process.env.REACT_APP_AUTH_KEY,
+              usertoken: token,
+              username,
+            }
+          )
         ).data;
 
         if (userData.status) {
-          setUserData(userData.searchedUserInfo);
-
-          setValidPage(true);
+          if (userData.response === "Redirect to profile") {
+            navigate("/dashboard/profile");
+          } else {
+            setUserData(userData.searchedUserInfo);
+            setValidPage(true);
+          }
         } else {
           setValidPage(false);
         }

@@ -29,10 +29,13 @@ function Profile() {
     } else {
       async function getUserInfo() {
         let userData = (
-          await axios.post("http://localhost:500/getuserinfo", {
-            authkey: process.env.REACT_APP_AUTH_KEY,
-            usertoken: token,
-          })
+          await axios.post(
+            "https://instaflixrootserver.vercel.app/getuserinfo",
+            {
+              authkey: process.env.REACT_APP_AUTH_KEY,
+              usertoken: token,
+            }
+          )
         ).data;
 
         if (userData.status) {

@@ -15,14 +15,16 @@ import tickImg from "../assets/tick.jpg";
 
 function Changepass() {
   const { forgottoken, usertoken } = useParams();
+
   const [userInfo, setUserInfo] = useState({});
   const [validPage, setValidPage] = useState(false);
   const [passChanged, setPassChanged] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     async function changePassValidate() {
       let userTokenValidate = await axios.post(
-        "http://localhost:500/getuserinfo",
+        "https://instaflixrootserver.vercel.app/getuserinfo",
         {
           authkey: process.env.REACT_APP_AUTH_KEY,
           usertoken,
@@ -33,7 +35,7 @@ function Changepass() {
         setUserInfo(userTokenValidate.data.userInfo);
 
         let forgotTokenValidate = await axios.post(
-          "http://localhost:500/verifyforgottoken",
+          "https://instaflixrootserver.vercel.app/verifyforgottoken",
           {
             authkey: process.env.REACT_APP_AUTH_KEY,
             token: forgottoken,
@@ -48,6 +50,8 @@ function Changepass() {
       } else {
         setValidPage(false);
       }
+
+      setLoaded(true);
     }
 
     changePassValidate();
@@ -55,17 +59,24 @@ function Changepass() {
 
   async function changePass(e) {
     e.preventDefault();
+
+    e.target[2].textContent = "Submitting...";
+
     let newPass = e.target[0].value;
     let conPass = e.target[1].value;
+
     if (newPass.trim() !== conPass.trim()) {
       toast.error("Passwords Are Not Same");
     } else {
-      let { data } = await axios.post("http://localhost:500/changepass", {
-        authkey: process.env.REACT_APP_AUTH_KEY,
-        forgottoken,
-        newPass,
-        oldPass: userInfo.password,
-      });
+      let { data } = await axios.post(
+        "https://instaflixrootserver.vercel.app/changepass",
+        {
+          authkey: process.env.REACT_APP_AUTH_KEY,
+          forgottoken,
+          newPass,
+          oldPass: userInfo.password,
+        }
+      );
 
       if (data.status) {
         setUserInfo({});
@@ -75,6 +86,8 @@ function Changepass() {
         toast.error(data.response);
       }
     }
+
+    e.target[2].textContent = "Confirm";
   }
 
   return (
@@ -83,49 +96,51 @@ function Changepass() {
         position="top-center"
         containerStyle={{ fontWeight: "bold", letterSpacing: "0.8px" }}
       />
-      {validPage ? (
-        !passChanged ? (
-          <div className={changePassCss.changePassContainer}>
-            <div className={changePassCss.changePassComponents}>
-              <div className={changePassCss.lockImg}>
-                <img src={lockImg} alt="lock" />
-                <p>
-                  Change your password and continue exploring your friend's
-                  posts
-                </p>
-              </div>
-              <div className={changePassCss.changeInput}>
-                <form method="post" onSubmit={changePass}>
-                  <input
-                    type="password"
-                    name="newPass"
-                    placeholder="New password"
-                    required
-                  />
-                  <input
-                    type="password"
-                    name="conPass"
-                    placeholder="Confirm password"
-                    required
-                  />
-                  <button type="submit">Confirm</button>
-                </form>
+      {loaded ? (
+        validPage ? (
+          !passChanged ? (
+            <div className={changePassCss.changePassContainer}>
+              <div className={changePassCss.changePassComponents}>
+                <div className={changePassCss.lockImg}>
+                  <img src={lockImg} alt="lock" />
+                  <p>
+                    Change your password and continue exploring your friend's
+                    posts
+                  </p>
+                </div>
+                <div className={changePassCss.changeInput}>
+                  <form method="post" onSubmit={changePass}>
+                    <input
+                      type="password"
+                      name="newPass"
+                      placeholder="New password"
+                      required
+                    />
+                    <input
+                      type="password"
+                      name="conPass"
+                      placeholder="Confirm password"
+                      required
+                    />
+                    <button type="submit">Confirm</button>
+                  </form>
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className={changePassCss.tickContainer}>
+              <img src={tickImg} alt="tick" />
+              <p>Password Changed</p>
+              <div className={changePassCss.home}>
+                <p>Go back to </p>
+                <Link to={"/"}>Home</Link>
+              </div>
+            </div>
+          )
         ) : (
-          <div className={changePassCss.tickContainer}>
-            <img src={tickImg} alt="tick" />
-            <p>Password Changed</p>
-            <div className={changePassCss.home}>
-              <p>Go back to </p>
-              <Link to={"/"}>Home</Link>
-            </div>
-          </div>
+          <Pnf />
         )
-      ) : (
-        <Pnf />
-      )}
+      ) : null}
     </>
   );
 }

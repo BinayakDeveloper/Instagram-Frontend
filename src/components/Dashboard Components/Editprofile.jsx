@@ -29,10 +29,13 @@ function Editprofile() {
     } else {
       async function getUserInfo() {
         let userData = (
-          await axios.post("http://localhost:500/getuserinfo", {
-            authkey: process.env.REACT_APP_AUTH_KEY,
-            usertoken: token,
-          })
+          await axios.post(
+            "https://instaflixrootserver.vercel.app/getuserinfo",
+            {
+              authkey: process.env.REACT_APP_AUTH_KEY,
+              usertoken: token,
+            }
+          )
         ).data;
 
         if (userData.status) {
@@ -62,14 +65,17 @@ function Editprofile() {
     let privateStatus = e.target[3].value;
 
     let updateStatus = (
-      await axios.post("http://localhost:500/updateuserinfo", {
-        authkey: process.env.REACT_APP_AUTH_KEY,
-        usertoken: token,
-        name,
-        username,
-        bio,
-        privateStatus,
-      })
+      await axios.post(
+        "https://instaflixrootserver.vercel.app/updateuserinfo",
+        {
+          authkey: process.env.REACT_APP_AUTH_KEY,
+          usertoken: token,
+          name,
+          username,
+          bio,
+          privateStatus,
+        }
+      )
     ).data;
 
     if (updateStatus.status) {
@@ -94,7 +100,7 @@ function Editprofile() {
 
     let uploadResponse = (
       await axios.post(
-        "http://localhost:500/uploaddp",
+        "https://instaflixrootserver.vercel.app/uploaddp",
         {
           authkey: process.env.REACT_APP_AUTH_KEY,
           userimage: image,
@@ -129,7 +135,7 @@ function Editprofile() {
       e.target.textContent = "Removing...";
       e.target.style.pointerEvents = "none";
       let removeStatus = (
-        await axios.post("http://localhost:500/removedp", {
+        await axios.post("https://instaflixrootserver.vercel.app/removedp", {
           authkey: process.env.REACT_APP_AUTH_KEY,
           token,
         })
