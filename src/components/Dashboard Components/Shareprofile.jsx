@@ -1,7 +1,9 @@
-import Leftdashboard from "./Leftdashboard";
-import Dashboardnav from "./Dashboardnav";
 import { useEffect, useState } from "react";
 import axios from "axios";
+
+import Leftdashboard from "./Leftdashboard";
+import Dashboardnav from "./Dashboardnav";
+import Componentloader from "./Componentloader";
 
 // Styles
 import sharecss from "../../styles/Dashboard Styles/shareprofile.module.scss";
@@ -75,7 +77,9 @@ function Shareprofile() {
                 </div>
               </div>
             </>
-          ) : null}
+          ) : (
+            <Componentloader />
+          )}
         </div>
       </div>
     </>

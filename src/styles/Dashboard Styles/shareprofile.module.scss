@@ -95,14 +95,15 @@
   }
 }
 
-@media screen and (max-width: 330px) {
+@media screen and (max-width: 450px) {
   .shareContainer {
-    height: 80vh;
+    height: 70vh;
     > .shareComponents {
       width: 100%;
 
       > .leftComponents {
         padding: 1.2em 1em;
+        gap: 15px;
 
         > .qrImg {
           height: 120px;
@@ -116,7 +117,7 @@
 
         > .username {
           > p {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
           }
         }
       }

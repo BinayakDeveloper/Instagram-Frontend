@@ -93,7 +93,7 @@ function Register() {
                 <input
                   type="text"
                   placeholder="Mobile number"
-                  name="number"
+                  name="Number"
                   autoComplete="off"
                   spellCheck="false"
                   required

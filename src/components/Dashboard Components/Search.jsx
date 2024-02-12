@@ -7,6 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 import Leftdashboard from "./Leftdashboard";
 import Dashboardnav from "./Dashboardnav";
 import Userloader from "./Userloader";
+import Componentloader from "./Componentloader";
 
 // Style
 import searchcss from "../../styles/Dashboard Styles/search.module.scss";
@@ -116,7 +117,9 @@ function Search() {
               noUserText={noUserText}
               searchUserloaded={searchUserloaded}
             />
-          ) : null}
+          ) : (
+            <Componentloader />
+          )}
         </div>
       </div>
     </>
@@ -138,7 +141,8 @@ function Searchuser({ users, searchUser, noUserText, searchUserloaded }) {
           <div className={searchcss.input}>
             <input
               type="text"
-              placeholder="Enter username"
+              placeholder="Search"
+              name="username input"
               spellCheck="false"
               autoComplete="off"
               onKeyUp={searchUser}

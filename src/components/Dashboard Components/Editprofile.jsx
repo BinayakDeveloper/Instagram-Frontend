@@ -9,6 +9,7 @@ import editcss from "../../styles/Dashboard Styles/editcss.module.scss";
 // Components
 import Leftdashboard from "./Leftdashboard";
 import Dashboardnav from "./Dashboardnav";
+import Componentloader from "./Componentloader";
 
 // Assets
 import userAvatar from "../../assets/avatar.png";
@@ -184,7 +185,9 @@ function Editprofile() {
                 setDpPopup={setDpPopup}
               />
             )
-          ) : null}
+          ) : (
+            <Componentloader />
+          )}
         </div>
       </div>
     </>

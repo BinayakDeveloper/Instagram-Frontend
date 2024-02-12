@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
@@ -11,10 +12,14 @@ import ss from "../assets/ss.png";
 import igtext from "../assets/igtext.png";
 import playstore from "../assets/playstore.png";
 import microsoft from "../assets/microsoft.png";
-import { useEffect } from "react";
+
+// Components
+import Pageloader from "./Pageloader";
 
 function Login() {
   const navigate = useNavigate();
+
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     let token = localStorage.getItem("user-ssid-token-ig");
@@ -37,6 +42,9 @@ function Login() {
       }
       tokenValidate();
     }
+    setTimeout(() => {
+      setLoaded(true);
+    }, 1500);
   }, [navigate]);
 
   async function loginValidate(e) {
@@ -70,73 +78,79 @@ function Login() {
         position="top-center"
         containerStyle={{ fontWeight: "bold", letterSpacing: "0.8px" }}
       />
-      <div className={logincss.loginContainer}>
-        <div className={logincss.loginLeft}>
-          <div className={logincss.phoneBg}>
-            <img src={phoneImg} alt="phonebg" />
-          </div>
-          <div className={logincss.screenshot}>
-            <img src={ss} alt="ss" />
-          </div>
-        </div>
-        <div className={logincss.loginRight}>
-          <div className={logincss.rightContainer}>
-            <div className={logincss.igtext}>
-              <img src={igtext} alt="igtext" />
+      {loaded ? (
+        <>
+          <div className={logincss.loginContainer}>
+            <div className={logincss.loginLeft}>
+              <div className={logincss.phoneBg}>
+                <img src={phoneImg} alt="phonebg" />
+              </div>
+              <div className={logincss.screenshot}>
+                <img src={ss} alt="ss" />
+              </div>
             </div>
-            <div className={logincss.input}>
-              <form method="post" onSubmit={loginValidate}>
-                <input
-                  type="text"
-                  name="email"
-                  placeholder="Phone number, username, or email"
-                  autoComplete="on"
-                  spellCheck="false"
-                  required
-                />
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  required
-                />
-                <button type="submit">Log in</button>
-              </form>
-            </div>
-            <div className={logincss.line}></div>
-            <div className={logincss.forgot}>
-              <Link to={"/forgot-password"}>Forgot password?</Link>
-            </div>
-          </div>
+            <div className={logincss.loginRight}>
+              <div className={logincss.rightContainer}>
+                <div className={logincss.igtext}>
+                  <img src={igtext} alt="igtext" />
+                </div>
+                <div className={logincss.input}>
+                  <form method="post" onSubmit={loginValidate}>
+                    <input
+                      type="text"
+                      name="email"
+                      placeholder="Phone number, username, or email"
+                      autoComplete="on"
+                      spellCheck="false"
+                      required
+                    />
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      required
+                    />
+                    <button type="submit">Log in</button>
+                  </form>
+                </div>
+                <div className={logincss.line}></div>
+                <div className={logincss.forgot}>
+                  <Link to={"/forgot-password"}>Forgot password?</Link>
+                </div>
+              </div>
 
-          <div className={logincss.signUp}>
-            <p>Don't have an account?</p>
-            <Link to={"/register"}>Sign up</Link>
-          </div>
+              <div className={logincss.signUp}>
+                <p>Don't have an account?</p>
+                <Link to={"/register"}>Sign up</Link>
+              </div>
 
-          <div className={logincss.downloadLinks}>
-            <p>Get the app.</p>
-            <div className={logincss.appLinks}>
-              <Link
-                to={
-                  "https://play.google.com/store/apps/details?id=com.instagram.android"
-                }
-                target="_blank"
-              >
-                <img src={playstore} alt="playstore" />
-              </Link>
-              <Link
-                to={
-                  "https://www.microsoft.com/store/productId/9NBLGGH5L9XT?ocid=pdpshare"
-                }
-                target="_blank"
-              >
-                <img src={microsoft} alt="microsoft" />
-              </Link>
+              <div className={logincss.downloadLinks}>
+                <p>Get the app.</p>
+                <div className={logincss.appLinks}>
+                  <Link
+                    to={
+                      "https://play.google.com/store/apps/details?id=com.instagram.android"
+                    }
+                    target="_blank"
+                  >
+                    <img src={playstore} alt="playstore" />
+                  </Link>
+                  <Link
+                    to={
+                      "https://www.microsoft.com/store/productId/9NBLGGH5L9XT?ocid=pdpshare"
+                    }
+                    target="_blank"
+                  >
+                    <img src={microsoft} alt="microsoft" />
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <Pageloader />
+      )}
     </>
   );
 }

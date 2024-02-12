@@ -129,7 +129,12 @@ function Otp() {
 
               <div className={otpcss.otpinp}>
                 <form method="post" onSubmit={otpValidate}>
-                  <input type="number" placeholder="Security Code" required />
+                  <input
+                    type="number"
+                    placeholder="Security Code"
+                    name="security code"
+                    required
+                  />
                   <button type="submit">Confirm</button>
                 </form>
               </div>

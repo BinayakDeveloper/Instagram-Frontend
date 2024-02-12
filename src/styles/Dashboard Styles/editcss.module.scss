@@ -202,7 +202,8 @@
 
 @media screen and (max-width: 375px) {
   .editContainer {
-    padding: 1rem 0;
+    padding: 1rem 0 2rem 0;
+
     > .editComponents {
       > .heading {
         > p {
@@ -314,7 +315,15 @@
 }
 
 @media screen and (max-width: 500px) {
-  .changeDpContainer > .dpComponents {
-    width: 90%;
+  .changeDpContainer {
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    > .dpComponents {
+      width: 90%;
+    }
   }
 }

@@ -236,7 +236,7 @@
 
 @media screen and (max-width: 530px) {
   .profileContainer {
-    margin: 0.8rem 0.3rem;
+    margin: 0.8rem 0.6rem;
 
     > .topcomponents {
       > .userInfo {
@@ -246,8 +246,8 @@
 
           > .userImg {
             > img {
-              height: 57px;
-              width: 57px;
+              height: 80px;
+              width: 80px;
             }
           }
 
@@ -258,13 +258,13 @@
 
             > .connectionInfo {
               margin-top: 10px;
-              gap: 6px;
+              gap: 15px;
 
               > .noOfPosts,
               .noOfFollowers,
               .noOfFollowing {
                 > p {
-                  font-size: 0.9rem;
+                  font-size: 1rem;
                 }
               }
             }
@@ -277,7 +277,7 @@
 
           > .name {
             > p {
-              font-size: 0.9rem;
+              font-size: 1.1rem;
 
               > svg {
                 font-size: 0.8rem;

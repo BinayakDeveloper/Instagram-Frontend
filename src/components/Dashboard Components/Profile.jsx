@@ -6,6 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 // Components
 import Leftdashboard from "./Leftdashboard";
 import Dashboardnav from "./Dashboardnav";
+import Componentloader from "./Componentloader";
 
 // Style
 import profilecss from "../../styles/Dashboard Styles/profile.module.scss";
@@ -83,7 +84,9 @@ function Profile() {
               following={userData.following}
               loaded={loaded}
             />
-          ) : null}
+          ) : (
+            <Componentloader />
+          )}
         </div>
       </div>
     </>
@@ -169,7 +172,7 @@ function Userprofile({
           </div>
           <div className={profilecss.posts}>
             <img
-              src="https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/09/instagram-image-size.jpg"
+              src="https://media.istockphoto.com/id/1305315134/photo/fishing-boat.jpg?s=612x612&w=0&k=20&c=UYTijPPXh_pxCafnK1MdoSBroPEse12pqNBhPf8hGVw="
               alt="img"
             />
           </div>
