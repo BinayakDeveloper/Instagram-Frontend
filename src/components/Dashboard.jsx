@@ -9,6 +9,7 @@ import toast, { Toaster } from "react-hot-toast";
 // Components
 import Leftdashboard from "./Dashboard Components/Leftdashboard";
 import Dashboardnav from "./Dashboard Components/Dashboardnav";
+import Componentloader from "./Dashboard Components/Componentloader";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -58,6 +59,7 @@ function Dashboard() {
         </div>
         <div className="mainContent">
           <Dashboardnav />
+          {loaded ? <h3>Dashboard</h3> : <Componentloader />}
         </div>
       </div>
     </>

@@ -163,7 +163,7 @@
 
       > .rightContainer {
         border: 0;
-
+        padding: 2rem 2rem 0.5rem 2rem;
         > .line {
           display: none;
         }
@@ -173,10 +173,12 @@
         padding: 0;
         padding-bottom: 25px;
         border: 0;
-        border-bottom: 2px solid rgb(219, 219, 219);
+        border-bottom: 0;
       }
 
       > .downloadLinks {
+        margin-top: 0;
+
         > .appLinks {
           > a > img {
             height: 30px;
