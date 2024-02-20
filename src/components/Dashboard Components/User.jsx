@@ -72,11 +72,14 @@ function User() {
   // Follow User
 
   async function followUser(e) {
-    let followStatus = await axios.post("http://localhost:500/followuser", {
-      authkey: process.env.REACT_APP_AUTH_KEY,
-      usertoken: userToken,
-      friendtoken: userData.token,
-    });
+    let followStatus = await axios.post(
+      "https://instaflixrootserver.vercel.app/followuser",
+      {
+        authkey: process.env.REACT_APP_AUTH_KEY,
+        usertoken: userToken,
+        friendtoken: userData.token,
+      }
+    );
 
     if (followStatus.data.status) {
       let userData = (
@@ -101,11 +104,14 @@ function User() {
   // Unfollow User
 
   async function unfollowUser() {
-    let unfollowStatus = await axios.post("http://localhost:500/unfollowuser", {
-      authkey: process.env.REACT_APP_AUTH_KEY,
-      usertoken: userToken,
-      friendtoken: userData.token,
-    });
+    let unfollowStatus = await axios.post(
+      "https://instaflixrootserver.vercel.app/unfollowuser",
+      {
+        authkey: process.env.REACT_APP_AUTH_KEY,
+        usertoken: userToken,
+        friendtoken: userData.token,
+      }
+    );
 
     if (unfollowStatus.data.status) {
       let userData = (
@@ -130,11 +136,14 @@ function User() {
   // Cancel Request
   async function removeRequest() {
     let removeStatus = (
-      await axios.post("http://localhost:500/removefollowrequest", {
-        authkey: process.env.REACT_APP_AUTH_KEY,
-        usertoken: userToken,
-        friendtoken: userData.token,
-      })
+      await axios.post(
+        "https://instaflixrootserver.vercel.app/removefollowrequest",
+        {
+          authkey: process.env.REACT_APP_AUTH_KEY,
+          usertoken: userToken,
+          friendtoken: userData.token,
+        }
+      )
     ).data;
 
     if (removeStatus.status) {
