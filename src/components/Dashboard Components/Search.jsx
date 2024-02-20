@@ -81,6 +81,9 @@ function Search() {
               }
             )
           ).data;
+
+          setSearchUserLoaded(true);
+
           if (users.status) {
             setUsers(users.users);
           } else {
@@ -90,11 +93,10 @@ function Search() {
         }
         getUser();
       } else {
+        setSearchUserLoaded(true);
         setUsers([]);
         setNoUserText("");
       }
-
-      setSearchUserLoaded(true);
     }, 300);
   }
 

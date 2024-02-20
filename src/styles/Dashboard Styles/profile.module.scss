@@ -246,8 +246,8 @@
 
           > .userImg {
             > img {
-              height: 80px;
-              width: 80px;
+              height: 62px;
+              width: 62px;
             }
           }
 
@@ -264,7 +264,7 @@
               .noOfFollowers,
               .noOfFollowing {
                 > p {
-                  font-size: 1rem;
+                  font-size: 14px;
                 }
               }
             }
@@ -273,11 +273,11 @@
 
         > .mainInfo {
           width: 100%;
-          gap: 9px;
+          gap: 5px;
 
           > .name {
             > p {
-              font-size: 1.1rem;
+              font-size: 1rem;
 
               > svg {
                 font-size: 0.8rem;
@@ -298,6 +298,7 @@
             align-items: center;
             text-align: center;
             font-size: 0.9rem;
+            margin-top: 10px;
           }
         }
       }

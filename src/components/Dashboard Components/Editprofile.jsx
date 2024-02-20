@@ -58,6 +58,7 @@ function Editprofile() {
   async function userInfoValidate(e) {
     e.preventDefault();
     setUpdate(false);
+    e.target[4].textContent = "Submitting...";
     let token = localStorage.getItem("user-ssid-token-ig");
     let name = e.target[0].value;
     let username = e.target[1].value;
@@ -85,6 +86,7 @@ function Editprofile() {
     } else {
       toast.error(updateStatus.response);
     }
+    e.target[4].textContent = "Submit";
   }
 
   // Upload DP

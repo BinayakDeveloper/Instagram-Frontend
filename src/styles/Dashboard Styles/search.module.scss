@@ -125,6 +125,13 @@ a {
         }
       }
 
+      > .users {
+        > h1 {
+          font-size: 1.1rem;
+          font-weight: 500;
+        }
+      }
+
       > .input {
         > input {
           font-size: 16px;
