@@ -25,6 +25,7 @@
 
         > .userImg {
           > img {
+            background-color: white;
             border-radius: 50%;
             height: 150px;
             width: 150px;
@@ -246,8 +247,8 @@
 
           > .userImg {
             > img {
-              height: 62px;
-              width: 62px;
+              height: 65px;
+              width: 65px;
             }
           }
 
@@ -286,7 +287,7 @@
           }
 
           > .bio {
-            margin: 0 0.2rem;
+            margin: 0.3rem 0.2rem;
             gap: 2px;
             font-size: 0.9rem;
           }

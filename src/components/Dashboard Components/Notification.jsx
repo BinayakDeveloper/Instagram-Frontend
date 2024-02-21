@@ -1,16 +1,262 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+
+// Styles
+import notcss from "../../styles/Dashboard Styles/notification.module.scss";
+
+// Components
 import Leftdashboard from "./Leftdashboard";
 import Dashboardnav from "./Dashboardnav";
+import Componentloader from "./Componentloader";
+
+// Assets
+import avatar from "../../assets/avatar.png";
+import { IoMdClose } from "react-icons/io";
 
 function Notification() {
+  const navigate = useNavigate();
+
+  const [userToken, setUserToken] = useState("");
+  const [loaded, setLoaded] = useState(false);
+  const [followRequests, setFollowRequests] = useState([]);
+  const [userData, setUserData] = useState([]);
+  const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    let token = localStorage.getItem("user-ssid-token-ig");
+    setUserToken(token);
+
+    async function getNotifications() {
+      let notifications = (
+        await axios.post(
+          "https://instaflixrootserver.vercel.app/getnotifications",
+          {
+            authkey: process.env.REACT_APP_AUTH_KEY,
+            usertoken: token,
+          }
+        )
+      ).data;
+
+      if (notifications.status) {
+        let followRequestsList = notifications.response.followRequests;
+        if (followRequestsList.length !== 0) {
+          let usersResponse = (
+            await axios.post(
+              "https://instaflixrootserver.vercel.app/getbulkuserdata",
+              {
+                authkey: process.env.REACT_APP_AUTH_KEY,
+                tokenList: followRequestsList,
+              }
+            )
+          ).data;
+
+          setUserData(usersResponse.users);
+        }
+        setFollowRequests(notifications.response.followRequests);
+        setNotifications(notifications.response.notifications);
+      } else {
+        toast.error(notifications.response);
+        localStorage.removeItem("user-ssid-token-ig");
+        navigate("/");
+      }
+      setLoaded(true);
+    }
+
+    getNotifications();
+  }, [navigate]);
+
   return (
     <>
+      <Toaster
+        position="top-center"
+        containerStyle={{ fontWeight: "bold", letterSpacing: "0.8px" }}
+      />
       <div className="dashboardContainer">
         <div className="leftSide">
           <Leftdashboard />
         </div>
         <div className="mainContent">
           <Dashboardnav />
-          <p>Notification</p>
+          {loaded ? (
+            <>
+              <div className={notcss.notificationContainer}>
+                <p></p>
+                {followRequests.length !== 0 ? (
+                  <>
+                    <p>New requests</p>
+                    {userData.map(
+                      ({ profilePic, name, username, token }, ind) => {
+                        return (
+                          <Request
+                            key={ind}
+                            profilePic={profilePic}
+                            name={name}
+                            username={username}
+                            token={token}
+                            userToken={userToken}
+                            setUserData={setUserData}
+                            setFollowRequests={setFollowRequests}
+                            setNotifications={setNotifications}
+                            navigate={navigate}
+                          />
+                        );
+                      }
+                    )}
+                  </>
+                ) : (
+                  <h2>No follow requests</h2>
+                )}
+              </div>
+            </>
+          ) : (
+            <Componentloader />
+          )}
+        </div>
+      </div>
+    </>
+  );
+}
+
+function Request({
+  profilePic,
+  name,
+  username,
+  token,
+  userToken,
+  setUserData,
+  setFollowRequests,
+  setNotifications,
+  navigate,
+}) {
+  async function cancelRequest(e) {
+    let removeStatus = (
+      await axios.post(
+        "https://instaflixrootserver.vercel.app/declinerequest",
+        {
+          authkey: process.env.REACT_APP_AUTH_KEY,
+          usertoken: userToken,
+          friendtoken: token,
+        }
+      )
+    ).data;
+
+    if (removeStatus.status) {
+      let notifications = (
+        await axios.post(
+          "https://instaflixrootserver.vercel.app/getnotifications",
+          {
+            authkey: process.env.REACT_APP_AUTH_KEY,
+            usertoken: userToken,
+          }
+        )
+      ).data;
+
+      if (notifications.status) {
+        let followRequestsList = notifications.response.followRequests;
+        if (followRequestsList.length !== 0) {
+          let usersResponse = (
+            await axios.post(
+              "https://instaflixrootserver.vercel.app/getbulkuserdata",
+              {
+                authkey: process.env.REACT_APP_AUTH_KEY,
+                tokenList: followRequestsList,
+              }
+            )
+          ).data;
+
+          setUserData(usersResponse.users);
+        }
+        setFollowRequests(notifications.response.followRequests);
+        setNotifications(notifications.response.notifications);
+      } else {
+        toast.error(notifications.response);
+        localStorage.removeItem("user-ssid-token-ig");
+        navigate("/");
+      }
+    } else {
+      toast.error(removeStatus.data.response);
+    }
+  }
+
+  async function acceptRequest(e) {
+    e.target.textContent = "Requesting...";
+    let acceptStatus = (
+      await axios.post("https://instaflixrootserver.vercel.app/acceptrequest", {
+        authkey: process.env.REACT_APP_AUTH_KEY,
+        usertoken: userToken,
+        friendtoken: token,
+      })
+    ).data;
+
+    if (acceptStatus.status) {
+      let notifications = (
+        await axios.post(
+          "https://instaflixrootserver.vercel.app/getnotifications",
+          {
+            authkey: process.env.REACT_APP_AUTH_KEY,
+            usertoken: userToken,
+          }
+        )
+      ).data;
+
+      if (notifications.status) {
+        let followRequestsList = notifications.response.followRequests;
+        if (followRequestsList.length !== 0) {
+          let usersResponse = (
+            await axios.post(
+              "https://instaflixrootserver.vercel.app/getbulkuserdata",
+              {
+                authkey: process.env.REACT_APP_AUTH_KEY,
+                tokenList: followRequestsList,
+              }
+            )
+          ).data;
+
+          setUserData(usersResponse.users);
+        }
+        setFollowRequests(notifications.response.followRequests);
+        setNotifications(notifications.response.notifications);
+      } else {
+        toast.error(notifications.response);
+        localStorage.removeItem("user-ssid-token-ig");
+        navigate("/");
+      }
+    } else {
+      toast.error(acceptStatus.data.response);
+    }
+    e.target.textContent = "Confirm";
+  }
+
+  return (
+    <>
+      <Toaster
+        position="top-center"
+        containerStyle={{ fontWeight: "bold", letterSpacing: "0.8px" }}
+      />
+      <div className={notcss.reqContainer}>
+        <div className={notcss.reqComponents}>
+          <Link to={`/dashboard/search/${username}`}>
+            <div className={notcss.leftComponents}>
+              <div className={notcss.profilePic}>
+                {profilePic === "" ? (
+                  <img src={avatar} alt="avatar" />
+                ) : (
+                  <img src={profilePic} alt="pic" />
+                )}
+              </div>
+              <div className={notcss.userInfo}>
+                <p>{username}</p>
+                <p>{name}</p>
+              </div>
+            </div>
+          </Link>
+
+          <div className={notcss.rightComponents}>
+            <button onClick={acceptRequest}>Confirm</button>
+            <IoMdClose onClick={cancelRequest} />
+          </div>
         </div>
       </div>
     </>

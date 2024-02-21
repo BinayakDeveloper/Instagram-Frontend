@@ -25,6 +25,7 @@
             width: 150px;
             margin-bottom: -6px;
             object-fit: contain;
+            background-color: white;
           }
         }
 
@@ -81,6 +82,10 @@
 
           > .userbio {
             font-size: 18px;
+          }
+
+          > .followbutton {
+            margin-top: 15px;
           }
         }
       }
@@ -206,10 +211,6 @@
 
             > .userbio {
               font-size: 16px;
-            }
-
-            > .followbutton {
-              margin-top: 8px;
             }
           }
         }

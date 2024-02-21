@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 import Leftdashboard from "./Leftdashboard";
 import Dashboardnav from "./Dashboardnav";
@@ -9,6 +11,8 @@ import Componentloader from "./Componentloader";
 import sharecss from "../../styles/Dashboard Styles/shareprofile.module.scss";
 
 function Shareprofile() {
+  const navigate = useNavigate();
+
   const [loaded, setLoaded] = useState(false);
   const [url, setUrl] = useState("");
   const [username, setUsername] = useState("");
@@ -27,12 +31,16 @@ function Shareprofile() {
       if (qrData.data.status) {
         setUrl(qrData.data.qrLink);
         setUsername(qrData.data.username);
+      } else {
+        localStorage.removeItem("user-ssid-token-ig");
+        toast.error(qrData.data.response);
+        navigate("/");
       }
 
       setLoaded(true);
     }
     getQR();
-  }, []);
+  }, [navigate]);
 
   function downloadQR() {
     let img = document.createElement("a");
@@ -43,6 +51,10 @@ function Shareprofile() {
 
   return (
     <>
+      <Toaster
+        position="top-center"
+        containerStyle={{ fontWeight: "bold", letterSpacing: "0.8px" }}
+      />
       <div className="dashboardContainer">
         <div className="leftSide">
           <Leftdashboard />

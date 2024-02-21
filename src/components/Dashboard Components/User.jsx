@@ -72,6 +72,7 @@ function User() {
   // Follow User
 
   async function followUser(e) {
+    e.target.textContent = "Requesting...";
     let followStatus = await axios.post(
       "https://instaflixrootserver.vercel.app/followuser",
       {
@@ -103,7 +104,8 @@ function User() {
 
   // Unfollow User
 
-  async function unfollowUser() {
+  async function unfollowUser(e) {
+    e.target.textContent = "Requesting...";
     let unfollowStatus = await axios.post(
       "https://instaflixrootserver.vercel.app/unfollowuser",
       {
@@ -134,7 +136,8 @@ function User() {
   }
 
   // Cancel Request
-  async function removeRequest() {
+  async function removeRequest(e) {
+    e.target.textContent = "Requesting...";
     let removeStatus = (
       await axios.post(
         "https://instaflixrootserver.vercel.app/removefollowrequest",
@@ -250,7 +253,7 @@ function User() {
                                   border: "2px solid #ccc",
                                   outline: "0",
                                   color: "white",
-                                  fontWeight: "500",
+                                  fontWeight: "bold",
                                   letterSpacing: "0.8px",
                                   padding: "8px 10px",
                                   borderRadius: "10px",
@@ -269,7 +272,7 @@ function User() {
                                   border: "2px solid transparent",
                                   outline: "0",
                                   color: "white",
-                                  fontWeight: "500",
+                                  fontWeight: "bold",
                                   letterSpacing: "0.8px",
                                   padding: "8px 10px",
                                   borderRadius: "10px",
@@ -288,7 +291,7 @@ function User() {
                                   border: "2px solid transparent",
                                   outline: "0",
                                   color: "white",
-                                  fontWeight: "500",
+                                  fontWeight: "bold",
                                   letterSpacing: "0.8px",
                                   padding: "8px 10px",
                                   borderRadius: "10px",
