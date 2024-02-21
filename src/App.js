@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Components
@@ -15,12 +16,26 @@ import Profile from "./components/Dashboard Components/Profile";
 import User from "./components/Dashboard Components/User";
 import Editprofile from "./components/Dashboard Components/Editprofile";
 import Shareprofile from "./components/Dashboard Components/Shareprofile";
+import Pnf from "./components/Pnf";
 
 // Stylesheets
 import "./styles/index.scss";
-import Pnf from "./components/Pnf";
 
 function App() {
+  useEffect(() => {
+    document.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "F12") e.preventDefault();
+      else if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i")
+        e.preventDefault();
+      else if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "c")
+        e.preventDefault();
+      else if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "j")
+        e.preventDefault();
+    });
+  });
   return (
     <Router>
       <Routes>
