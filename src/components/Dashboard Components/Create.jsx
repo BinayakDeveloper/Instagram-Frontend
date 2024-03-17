@@ -82,9 +82,13 @@ function Create() {
     };
 
     let uploadStatus = (
-      await axios.post("http://localhost:500/uploadpost", finalData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
+      await axios.post(
+        "https://instaflixrootserver.vercel.app/uploadpost",
+        finalData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      )
     ).data;
 
     if (uploadStatus.status) {
