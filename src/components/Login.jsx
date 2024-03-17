@@ -36,15 +36,18 @@ function Login() {
         if (!tokenVerify.data.status) {
           toast.error("Invalid token");
           localStorage.removeItem("user-ssid-token-ig");
+          setLoaded(true);
         } else {
           navigate("/dashboard");
+          setLoaded(false);
         }
       }
       tokenValidate();
+    } else {
+      setTimeout(() => {
+        setLoaded(true);
+      }, 1500);
     }
-    setTimeout(() => {
-      setLoaded(true);
-    }, 1500);
   }, [navigate]);
 
   async function loginValidate(e) {
