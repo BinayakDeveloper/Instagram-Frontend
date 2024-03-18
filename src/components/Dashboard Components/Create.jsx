@@ -20,7 +20,7 @@ import { HiOutlineMapPin } from "react-icons/hi2";
 function Create() {
   const navigate = useNavigate();
 
-  // const stages = ["imageselection", "previewimage", "imagecaption"];
+  // const stages = ["imageselection", "previewimage", "imagecaption","imageuploading"];
   let [pointer, setPointer] = useState(0);
   let [captionLen, setCaptionLen] = useState(0);
   const [previewUrl, setPreviewUrl] = useState("");
