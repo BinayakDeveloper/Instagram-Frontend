@@ -174,7 +174,8 @@
         > img {
           height: 150px;
           width: 150px;
-          object-fit: fill;
+          object-fit: cover;
+          vertical-align: bottom;
           cursor: pointer;
         }
       }
@@ -344,11 +345,10 @@
       width: 100%;
 
       > .posts {
-        justify-content: center;
-
         > .userPost > img {
-          height: 97px;
-          width: 97px;
+          height: 140px;
+          width: 140px;
+          image-rendering: pixelated;
         }
 
         > .noPost {
