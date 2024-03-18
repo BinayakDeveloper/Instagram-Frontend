@@ -259,7 +259,7 @@
     height: 84.9vh;
 
     > .createComponents {
-      width: auto;
+      width: 90vw;
 
       > .uploadArea {
         height: 50vh;
@@ -294,8 +294,9 @@
           max-height: 30vh;
 
           > img {
-            height: 80px;
-            width: 80px;
+            object-fit: contain;
+            height: 160px;
+            width: 100%;
           }
         }
 
