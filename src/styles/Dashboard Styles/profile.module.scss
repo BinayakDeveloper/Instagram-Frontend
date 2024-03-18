@@ -59,6 +59,12 @@
             > .noOfPosts,
             .noOfFollowers,
             .noOfFollowing {
+              > a > p {
+                font-weight: bold;
+                letter-spacing: 0.8px;
+                text-align: center;
+              }
+
               > p {
                 font-weight: bold;
                 letter-spacing: 0.8px;
@@ -137,6 +143,7 @@
 
   > .bottomcomponents {
     margin-bottom: 30px;
+    width: 100%;
 
     > .category {
       padding: 0 0 18px 0;
@@ -153,14 +160,43 @@
         padding-top: 18px;
       }
     }
-    > .posts {
-      display: grid;
-      grid-template-columns: repeat(3, 255px);
-      gap: 10px;
 
-      > img {
-        height: 180px;
-        border-radius: 5px;
+    > .posts {
+      min-width: 100%;
+
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+
+      > .userPost {
+        width: min-content;
+
+        > img {
+          height: 120px;
+          width: 120px;
+          object-fit: contain;
+        }
+      }
+
+      > .noPost {
+        margin-top: 40px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        > svg {
+          font-size: 6rem;
+          border: 2px solid white;
+          border-radius: 50%;
+          padding: 10px;
+        }
+
+        > label {
+          font-size: 23px;
+        }
       }
     }
   }
@@ -309,12 +345,14 @@
       width: 100%;
 
       > .posts {
-        display: flex;
-        justify-content: flex-start;
-        flex-wrap: wrap;
+        > .noPost {
+          > svg {
+            font-size: 4rem;
+          }
 
-        > img {
-          height: 100px;
+          > label {
+            font-size: 20px;
+          }
         }
       }
     }

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
+import { HashLink } from "react-router-hash-link";
 
 // Components
 import Leftdashboard from "./Leftdashboard";
@@ -14,6 +15,7 @@ import profilecss from "../../styles/Dashboard Styles/profile.module.scss";
 // Images
 import userAvatar from "../../assets/avatar.png";
 import { FaLock } from "react-icons/fa";
+import { IoCameraOutline } from "react-icons/io5";
 
 function Profile() {
   const navigate = useNavigate();
@@ -122,8 +124,10 @@ function Userprofile({
                 </p>
                 <div className={profilecss.connectionInfo}>
                   <div className={profilecss.noOfPosts}>
-                    <p>{posts.length}</p>
-                    <p>posts</p>
+                    <HashLink to={"#postarea"}>
+                      <p>{posts.length}</p>
+                      <p>posts</p>
+                    </HashLink>
                   </div>
                   <div className={profilecss.noOfFollowers}>
                     <p>{followers.length}</p>
@@ -146,7 +150,9 @@ function Userprofile({
               </div>
               <div className={profilecss.connectionDetails}>
                 <p>
-                  <b>{posts.length}</b> posts
+                  <HashLink to={"#postarea"}>
+                    <b>{posts.length}</b> posts
+                  </HashLink>
                 </p>
                 <p>
                   <b>{followers.length}</b> followers
@@ -170,13 +176,37 @@ function Userprofile({
           <div className={profilecss.category}>
             <p>POSTS</p>
           </div>
-          <div className={profilecss.posts}>
-            <img
-              src="https://media.istockphoto.com/id/1305315134/photo/fishing-boat.jpg?s=612x612&w=0&k=20&c=UYTijPPXh_pxCafnK1MdoSBroPEse12pqNBhPf8hGVw="
-              alt="img"
-            />
+          <div className={profilecss.posts} id="postarea">
+            {posts.length === 0 ? (
+              <NoPost />
+            ) : (
+              posts.map(({ postUrl }, ind) => {
+                return <Post url={postUrl} ind={ind} key={ind} />;
+              })
+            )}
           </div>
         </div>
+      </div>
+    </>
+  );
+}
+
+function NoPost() {
+  return (
+    <>
+      <div className={profilecss.noPost}>
+        <IoCameraOutline />
+        <label>No Posts Yet</label>
+      </div>
+    </>
+  );
+}
+
+function Post({ url, ind }) {
+  return (
+    <>
+      <div className={profilecss.userPost}>
+        <img src={url} alt={"Post " + ind} />
       </div>
     </>
   );

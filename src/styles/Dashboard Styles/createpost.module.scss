@@ -261,6 +261,10 @@
     > .createComponents {
       width: 90vw;
 
+      > .uploadingStatus {
+        width: 90vw;
+      }
+
       > .uploadArea {
         height: 50vh;
         width: 90vw;

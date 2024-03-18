@@ -21,7 +21,7 @@ function Create() {
   const navigate = useNavigate();
 
   // const stages = ["imageselection", "previewimage", "imagecaption","imageuploading"];
-  let [pointer, setPointer] = useState(0);
+  let [pointer, setPointer] = useState(3);
   let [captionLen, setCaptionLen] = useState(0);
   const [previewUrl, setPreviewUrl] = useState("");
   const [loaded, setLoaded] = useState(false);
