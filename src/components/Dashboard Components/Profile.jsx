@@ -180,7 +180,7 @@ function Userprofile({
             {posts.length === 0 ? (
               <NoPost />
             ) : (
-              posts.map(({ postUrl }, ind) => {
+              posts.reverse().map(({ postUrl }, ind) => {
                 return <Post url={postUrl} ind={ind} key={ind} />;
               })
             )}

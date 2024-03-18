@@ -66,10 +66,14 @@ function Create() {
   async function uploadPost(e) {
     e.preventDefault();
     let imgData = e.target.files[0];
-    setFile(imgData);
-    let imgUrl = URL.createObjectURL(imgData);
-    setPreviewUrl(imgUrl);
-    setPointer(++pointer);
+    if (imgData.size > 5000000) {
+      toast.error("File size too large");
+    } else {
+      setFile(imgData);
+      let imgUrl = URL.createObjectURL(imgData);
+      setPreviewUrl(imgUrl);
+      setPointer(++pointer);
+    }
   }
 
   async function sharePost() {
