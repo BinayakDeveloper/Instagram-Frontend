@@ -93,6 +93,64 @@
 
     > .bottomComponents {
       width: 80%;
+
+      > .category {
+        padding: 0 0 18px 0;
+        border-top: 1px solid rgb(71, 71, 71);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+
+        > p {
+          font-weight: bold;
+          letter-spacing: 0.8px;
+          border-top: 1px solid rgb(219, 219, 219);
+          padding-top: 18px;
+        }
+      }
+
+      > .posts {
+        min-width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        column-gap: 0.2rem;
+        row-gap: 0.2rem;
+
+        > .userPost {
+          > img {
+            height: 150px;
+            width: 150px;
+            object-fit: cover;
+            vertical-align: bottom;
+            cursor: pointer;
+          }
+        }
+      }
+
+      > .noPost {
+        margin-top: 40px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        > svg {
+          font-size: 6rem;
+          border: 2px solid white;
+          border-radius: 50%;
+          padding: 10px;
+        }
+
+        > label {
+          font-size: 23px;
+        }
+      }
+
       > .privateAccMsg {
         text-align: center;
         padding: 5rem 2rem;
@@ -175,6 +233,30 @@
 
       > .bottomComponents {
         width: 95%;
+
+        > .posts {
+          justify-content: center;
+          gap: 0.6rem;
+
+          > .userPost {
+            > img {
+              height: 100px;
+              width: 100px;
+              image-rendering: pixelated;
+            }
+          }
+        }
+
+        > .noPost {
+          > svg {
+            font-size: 4rem;
+          }
+
+          > label {
+            font-size: 20px;
+          }
+        }
+
         > .privateAccMsg {
           border: 0;
           padding: 1rem;

@@ -1,4 +1,4 @@
-// import { useEffect } from "react";
+import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Components
@@ -22,20 +22,20 @@ import Pnf from "./components/Pnf";
 import "./styles/index.scss";
 
 function App() {
-  // useEffect(() => {
-  //   document.addEventListener("contextmenu", (e) => {
-  //     e.preventDefault();
-  //   });
-  //   document.addEventListener("keydown", (e) => {
-  //     if (e.key === "F12") e.preventDefault();
-  //     else if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i")
-  //       e.preventDefault();
-  //     else if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "c")
-  //       e.preventDefault();
-  //     else if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "j")
-  //       e.preventDefault();
-  //   });
-  // });
+  useEffect(() => {
+    document.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "F12") e.preventDefault();
+      else if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i")
+        e.preventDefault();
+      else if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "c")
+        e.preventDefault();
+      else if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "j")
+        e.preventDefault();
+    });
+  });
   return (
     <Router>
       <Routes>

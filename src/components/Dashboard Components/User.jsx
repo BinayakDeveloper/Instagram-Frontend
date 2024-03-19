@@ -15,6 +15,7 @@ import usercss from "../../styles/Dashboard Styles/user.module.scss";
 // Assets
 import userAvatar from "../../assets/avatar.png";
 import { FaLock } from "react-icons/fa";
+import { IoCameraOutline } from "react-icons/io5";
 
 function User() {
   const navigate = useNavigate();
@@ -308,12 +309,33 @@ function User() {
                     <div className={usercss.bottomComponents}>
                       {userData.privateStatus === 1 ? (
                         userData.followers.includes(userToken) ? (
-                          <h2>Posts are here</h2>
+                          <>
+                            <div className={usercss.category}>
+                              <p>POSTS</p>
+                            </div>
+                            {userData.posts.length === 0 ? (
+                              <NoPost />
+                            ) : (
+                              <div className={usercss.posts}>
+                                {userData.posts
+                                  .reverse()
+                                  .map(({ postUrl }, ind) => {
+                                    return (
+                                      <Post url={postUrl} ind={ind} key={ind} />
+                                    );
+                                  })}
+                              </div>
+                            )}
+                          </>
                         ) : (
                           <PrivateAccount />
                         )
+                      ) : userData.posts.length === 0 ? (
+                        <NoPost />
                       ) : (
-                        <h2>Posts are here</h2>
+                        userData.posts.reverse().map(({ postUrl }, ind) => {
+                          return <Post url={postUrl} ind={ind} key={ind} />;
+                        })
                       )}
                     </div>
                   </div>
@@ -337,6 +359,27 @@ function PrivateAccount() {
       <div className={usercss.privateAccMsg}>
         <p>This Account is Private</p>
         <p>Follow to see their photos and videos.</p>
+      </div>
+    </>
+  );
+}
+
+function NoPost() {
+  return (
+    <>
+      <div className={usercss.noPost}>
+        <IoCameraOutline />
+        <label>No Posts Yet</label>
+      </div>
+    </>
+  );
+}
+
+function Post({ url, ind }) {
+  return (
+    <>
+      <div className={usercss.userPost}>
+        <img src={url} alt={"Post " + ind} />
       </div>
     </>
   );
