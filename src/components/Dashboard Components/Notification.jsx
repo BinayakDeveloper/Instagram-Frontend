@@ -25,13 +25,10 @@ function Notification({ Leftdashboard, Dashboardnav, Componentloader }) {
 
     async function getNotifications() {
       let notifications = (
-        await axios.post(
-          "https://instaflixrootserver.vercel.app/getnotifications",
-          {
-            authkey: process.env.REACT_APP_AUTH_KEY,
-            usertoken: token,
-          }
-        )
+        await axios.post("https://instameserver.vercel.app/getnotifications", {
+          authkey: process.env.REACT_APP_AUTH_KEY,
+          usertoken: token,
+        })
       ).data;
 
       if (notifications.status) {
@@ -39,7 +36,7 @@ function Notification({ Leftdashboard, Dashboardnav, Componentloader }) {
         if (followRequestsList.length !== 0) {
           let usersResponse = (
             await axios.post(
-              "https://instaflixrootserver.vercel.app/getbulkuserdata",
+              "https://instameserver.vercel.app/getbulkuserdata",
               {
                 authkey: process.env.REACT_APP_AUTH_KEY,
                 tokenList: followRequestsList,
@@ -127,25 +124,19 @@ function Request({
 }) {
   async function cancelRequest(e) {
     let removeStatus = (
-      await axios.post(
-        "https://instaflixrootserver.vercel.app/declinerequest",
-        {
-          authkey: process.env.REACT_APP_AUTH_KEY,
-          usertoken: userToken,
-          friendtoken: token,
-        }
-      )
+      await axios.post("https://instameserver.vercel.app/declinerequest", {
+        authkey: process.env.REACT_APP_AUTH_KEY,
+        usertoken: userToken,
+        friendtoken: token,
+      })
     ).data;
 
     if (removeStatus.status) {
       let notifications = (
-        await axios.post(
-          "https://instaflixrootserver.vercel.app/getnotifications",
-          {
-            authkey: process.env.REACT_APP_AUTH_KEY,
-            usertoken: userToken,
-          }
-        )
+        await axios.post("https://instameserver.vercel.app/getnotifications", {
+          authkey: process.env.REACT_APP_AUTH_KEY,
+          usertoken: userToken,
+        })
       ).data;
 
       if (notifications.status) {
@@ -153,7 +144,7 @@ function Request({
         if (followRequestsList.length !== 0) {
           let usersResponse = (
             await axios.post(
-              "https://instaflixrootserver.vercel.app/getbulkuserdata",
+              "https://instameserver.vercel.app/getbulkuserdata",
               {
                 authkey: process.env.REACT_APP_AUTH_KEY,
                 tokenList: followRequestsList,
@@ -178,7 +169,7 @@ function Request({
   async function acceptRequest(e) {
     e.target.textContent = "Requesting...";
     let acceptStatus = (
-      await axios.post("https://instaflixrootserver.vercel.app/acceptrequest", {
+      await axios.post("https://instameserver.vercel.app/acceptrequest", {
         authkey: process.env.REACT_APP_AUTH_KEY,
         usertoken: userToken,
         friendtoken: token,
@@ -187,13 +178,10 @@ function Request({
 
     if (acceptStatus.status) {
       let notifications = (
-        await axios.post(
-          "https://instaflixrootserver.vercel.app/getnotifications",
-          {
-            authkey: process.env.REACT_APP_AUTH_KEY,
-            usertoken: userToken,
-          }
-        )
+        await axios.post("https://instameserver.vercel.app/getnotifications", {
+          authkey: process.env.REACT_APP_AUTH_KEY,
+          usertoken: userToken,
+        })
       ).data;
 
       if (notifications.status) {
@@ -201,7 +189,7 @@ function Request({
         if (followRequestsList.length !== 0) {
           let usersResponse = (
             await axios.post(
-              "https://instaflixrootserver.vercel.app/getbulkuserdata",
+              "https://instameserver.vercel.app/getbulkuserdata",
               {
                 authkey: process.env.REACT_APP_AUTH_KEY,
                 tokenList: followRequestsList,

@@ -25,13 +25,10 @@ function Editprofile({ Leftdashboard, Dashboardnav, Componentloader }) {
     } else {
       async function getUserInfo() {
         let userData = (
-          await axios.post(
-            "https://instaflixrootserver.vercel.app/getuserinfo",
-            {
-              authkey: process.env.REACT_APP_AUTH_KEY,
-              usertoken: token,
-            }
-          )
+          await axios.post("https://instameserver.vercel.app/getuserinfo", {
+            authkey: process.env.REACT_APP_AUTH_KEY,
+            usertoken: token,
+          })
         ).data;
 
         if (userData.status) {
@@ -62,17 +59,14 @@ function Editprofile({ Leftdashboard, Dashboardnav, Componentloader }) {
     let privateStatus = e.target[3].value;
 
     let updateStatus = (
-      await axios.post(
-        "https://instaflixrootserver.vercel.app/updateuserinfo",
-        {
-          authkey: process.env.REACT_APP_AUTH_KEY,
-          usertoken: token,
-          name,
-          username,
-          bio,
-          privateStatus,
-        }
-      )
+      await axios.post("https://instameserver.vercel.app/updateuserinfo", {
+        authkey: process.env.REACT_APP_AUTH_KEY,
+        usertoken: token,
+        name,
+        username,
+        bio,
+        privateStatus,
+      })
     ).data;
 
     if (updateStatus.status) {
@@ -98,7 +92,7 @@ function Editprofile({ Leftdashboard, Dashboardnav, Componentloader }) {
 
     let uploadResponse = (
       await axios.post(
-        "https://instaflixrootserver.vercel.app/uploaddp",
+        "https://instameserver.vercel.app/uploaddp",
         {
           authkey: process.env.REACT_APP_AUTH_KEY,
           userimage: image,
@@ -133,7 +127,7 @@ function Editprofile({ Leftdashboard, Dashboardnav, Componentloader }) {
       e.target.textContent = "Removing...";
       e.target.style.pointerEvents = "none";
       let removeStatus = (
-        await axios.post("https://instaflixrootserver.vercel.app/removedp", {
+        await axios.post("https://instameserver.vercel.app/removedp", {
           authkey: process.env.REACT_APP_AUTH_KEY,
           token,
         })

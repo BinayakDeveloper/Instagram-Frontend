@@ -27,7 +27,7 @@ function Login() {
     if (token !== null) {
       async function tokenValidate() {
         let tokenVerify = await axios.post(
-          "https://instaflixrootserver.vercel.app/verifyusertoken",
+          "https://instameserver.vercel.app/verifyusertoken",
           {
             authkey: process.env.REACT_APP_AUTH_KEY,
             token,
@@ -63,7 +63,7 @@ function Login() {
     };
 
     let loginStatus = (
-      await axios.post("https://instaflixrootserver.vercel.app/login", userObj)
+      await axios.post("https://instameserver.vercel.app/login", userObj)
     ).data;
 
     if (loginStatus.status) {

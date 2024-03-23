@@ -25,20 +25,17 @@ function Otp() {
   useEffect(() => {
     async function getUserInfo() {
       let user = (
-        await axios.post(
-          "https://instaflixrootserver.vercel.app/verifyusertoken",
-          {
-            authkey: process.env.REACT_APP_AUTH_KEY,
-            token: usertoken,
-          }
-        )
+        await axios.post("https://instameserver.vercel.app/verifyusertoken", {
+          authkey: process.env.REACT_APP_AUTH_KEY,
+          token: usertoken,
+        })
       ).data;
 
       if (user.status) {
         console.log(user);
         setUserInfo(user.userInfo);
         let otp = await axios.post(
-          "https://instaflixrootserver.vercel.app/genotptoken",
+          "https://instameserver.vercel.app/genotptoken",
           {
             authkey: process.env.REACT_APP_AUTH_KEY,
             userInfo: user.userInfo,
@@ -63,14 +60,11 @@ function Otp() {
     let enteredOtp = e.target[0].value;
 
     let validateResponse = (
-      await axios.post(
-        "https://instaflixrootserver.vercel.app/verifyotptoken",
-        {
-          authkey: process.env.REACT_APP_AUTH_KEY,
-          enteredOtp,
-          otpToken,
-        }
-      )
+      await axios.post("https://instameserver.vercel.app/verifyotptoken", {
+        authkey: process.env.REACT_APP_AUTH_KEY,
+        enteredOtp,
+        otpToken,
+      })
     ).data;
 
     if (validateResponse.status) {
@@ -92,13 +86,10 @@ function Otp() {
 
   async function resendOtp(e) {
     e.target.innerHTML = "sending otp...";
-    let otp = await axios.post(
-      "https://instaflixrootserver.vercel.app/genotptoken",
-      {
-        authkey: process.env.REACT_APP_AUTH_KEY,
-        userInfo: userInfo,
-      }
-    );
+    let otp = await axios.post("https://instameserver.vercel.app/genotptoken", {
+      authkey: process.env.REACT_APP_AUTH_KEY,
+      userInfo: userInfo,
+    });
 
     if (otp.data.status) {
       setOtpToken(otp.data.otpToken);

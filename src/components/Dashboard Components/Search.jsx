@@ -29,13 +29,10 @@ function Search({ Leftdashboard, Dashboardnav, Componentloader, Userloader }) {
     } else {
       async function getUserInfo() {
         let userData = (
-          await axios.post(
-            "https://instaflixrootserver.vercel.app/getuserinfo",
-            {
-              authkey: process.env.REACT_APP_AUTH_KEY,
-              usertoken: token,
-            }
-          )
+          await axios.post("https://instameserver.vercel.app/getuserinfo", {
+            authkey: process.env.REACT_APP_AUTH_KEY,
+            usertoken: token,
+          })
         ).data;
 
         if (userData.status) {
@@ -66,14 +63,11 @@ function Search({ Leftdashboard, Dashboardnav, Componentloader, Userloader }) {
       if (inputValue !== "") {
         async function getUser() {
           let users = (
-            await axios.post(
-              "https://instaflixrootserver.vercel.app/searchuser",
-              {
-                authkey: process.env.REACT_APP_AUTH_KEY,
-                username: inputValue,
-                token,
-              }
-            )
+            await axios.post("https://instameserver.vercel.app/searchuser", {
+              authkey: process.env.REACT_APP_AUTH_KEY,
+              username: inputValue,
+              token,
+            })
           ).data;
 
           setSearchUserLoaded(true);

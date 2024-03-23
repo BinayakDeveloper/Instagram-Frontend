@@ -17,7 +17,7 @@ function Shareprofile({ Leftdashboard, Dashboardnav, Componentloader }) {
     async function getQR() {
       let token = localStorage.getItem("user-ssid-token-ig");
       let qrData = await axios.post(
-        "https://instaflixrootserver.vercel.app/generateuserqr",
+        "https://instameserver.vercel.app/generateuserqr",
         {
           authkey: process.env.REACT_APP_AUTH_KEY,
           usertoken: token,

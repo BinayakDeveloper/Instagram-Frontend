@@ -24,7 +24,7 @@ function Changepass() {
   useEffect(() => {
     async function changePassValidate() {
       let userTokenValidate = await axios.post(
-        "https://instaflixrootserver.vercel.app/getuserinfo",
+        "https://instameserver.vercel.app/getuserinfo",
         {
           authkey: process.env.REACT_APP_AUTH_KEY,
           usertoken,
@@ -35,7 +35,7 @@ function Changepass() {
         setUserInfo(userTokenValidate.data.userInfo);
 
         let forgotTokenValidate = await axios.post(
-          "https://instaflixrootserver.vercel.app/verifyforgottoken",
+          "https://instameserver.vercel.app/verifyforgottoken",
           {
             authkey: process.env.REACT_APP_AUTH_KEY,
             token: forgottoken,
@@ -69,7 +69,7 @@ function Changepass() {
       toast.error("Passwords Are Not Same");
     } else {
       let { data } = await axios.post(
-        "https://instaflixrootserver.vercel.app/changepass",
+        "https://instameserver.vercel.app/changepass",
         {
           authkey: process.env.REACT_APP_AUTH_KEY,
           forgottoken,

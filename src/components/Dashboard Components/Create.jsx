@@ -33,13 +33,10 @@ function Create({ Leftdashboard, Dashboardnav, Componentloader }) {
     } else {
       async function getUserInfo() {
         let userData = (
-          await axios.post(
-            "https://instaflixrootserver.vercel.app/getuserinfo",
-            {
-              authkey: process.env.REACT_APP_AUTH_KEY,
-              usertoken: token,
-            }
-          )
+          await axios.post("https://instameserver.vercel.app/getuserinfo", {
+            authkey: process.env.REACT_APP_AUTH_KEY,
+            usertoken: token,
+          })
         ).data;
 
         if (userData.status) {
@@ -82,7 +79,7 @@ function Create({ Leftdashboard, Dashboardnav, Componentloader }) {
 
     let uploadStatus = (
       await axios.post(
-        "https://instaflixrootserver.vercel.app/uploadpost",
+        "https://instameserver.vercel.app/uploadpost",
         finalData,
         {
           headers: { "Content-Type": "multipart/form-data" },

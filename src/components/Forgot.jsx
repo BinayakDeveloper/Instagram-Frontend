@@ -19,7 +19,7 @@ function Forgot() {
     if (token !== null) {
       async function tokenValidate() {
         let tokenVerify = await axios.post(
-          "https://instaflixrootserver.vercel.app/verifyusertoken",
+          "https://instameserver.vercel.app/verifyusertoken",
           {
             authkey: process.env.REACT_APP_AUTH_KEY,
             token,
@@ -41,13 +41,10 @@ function Forgot() {
     e.target[1].textContent = "Sending...";
 
     let forotResponse = (
-      await axios.post(
-        "https://instaflixrootserver.vercel.app/genforgottoken",
-        {
-          authkey: process.env.REACT_APP_AUTH_KEY,
-          data: e.target[0].value,
-        }
-      )
+      await axios.post("https://instameserver.vercel.app/genforgottoken", {
+        authkey: process.env.REACT_APP_AUTH_KEY,
+        data: e.target[0].value,
+      })
     ).data;
 
     if (forotResponse.status) {

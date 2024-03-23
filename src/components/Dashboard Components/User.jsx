@@ -37,7 +37,7 @@ function User() {
       async function getSearchedUserData() {
         let userData = (
           await axios.post(
-            "https://instaflixrootserver.vercel.app/getsearchuserinfo",
+            "https://instameserver.vercel.app/getsearchuserinfo",
             {
               authkey: process.env.REACT_APP_AUTH_KEY,
               usertoken: token,
@@ -76,7 +76,7 @@ function User() {
   async function followUser(e) {
     e.target.textContent = "Requesting...";
     let followStatus = await axios.post(
-      "https://instaflixrootserver.vercel.app/followuser",
+      "https://instameserver.vercel.app/followuser",
       {
         authkey: process.env.REACT_APP_AUTH_KEY,
         usertoken: userToken,
@@ -86,14 +86,11 @@ function User() {
 
     if (followStatus.data.status) {
       let userData = (
-        await axios.post(
-          "https://instaflixrootserver.vercel.app/getsearchuserinfo",
-          {
-            authkey: process.env.REACT_APP_AUTH_KEY,
-            usertoken: userToken,
-            username,
-          }
-        )
+        await axios.post("https://instameserver.vercel.app/getsearchuserinfo", {
+          authkey: process.env.REACT_APP_AUTH_KEY,
+          usertoken: userToken,
+          username,
+        })
       ).data;
 
       if (userData.status) {
@@ -109,7 +106,7 @@ function User() {
   async function unfollowUser(e) {
     e.target.textContent = "Requesting...";
     let unfollowStatus = await axios.post(
-      "https://instaflixrootserver.vercel.app/unfollowuser",
+      "https://instameserver.vercel.app/unfollowuser",
       {
         authkey: process.env.REACT_APP_AUTH_KEY,
         usertoken: userToken,
@@ -119,14 +116,11 @@ function User() {
 
     if (unfollowStatus.data.status) {
       let userData = (
-        await axios.post(
-          "https://instaflixrootserver.vercel.app/getsearchuserinfo",
-          {
-            authkey: process.env.REACT_APP_AUTH_KEY,
-            usertoken: userToken,
-            username,
-          }
-        )
+        await axios.post("https://instameserver.vercel.app/getsearchuserinfo", {
+          authkey: process.env.REACT_APP_AUTH_KEY,
+          usertoken: userToken,
+          username,
+        })
       ).data;
 
       if (userData.status) {
@@ -141,26 +135,20 @@ function User() {
   async function removeRequest(e) {
     e.target.textContent = "Requesting...";
     let removeStatus = (
-      await axios.post(
-        "https://instaflixrootserver.vercel.app/removefollowrequest",
-        {
-          authkey: process.env.REACT_APP_AUTH_KEY,
-          usertoken: userToken,
-          friendtoken: userData.token,
-        }
-      )
+      await axios.post("https://instameserver.vercel.app/removefollowrequest", {
+        authkey: process.env.REACT_APP_AUTH_KEY,
+        usertoken: userToken,
+        friendtoken: userData.token,
+      })
     ).data;
 
     if (removeStatus.status) {
       let userData = (
-        await axios.post(
-          "https://instaflixrootserver.vercel.app/getsearchuserinfo",
-          {
-            authkey: process.env.REACT_APP_AUTH_KEY,
-            usertoken: userToken,
-            username,
-          }
-        )
+        await axios.post("https://instameserver.vercel.app/getsearchuserinfo", {
+          authkey: process.env.REACT_APP_AUTH_KEY,
+          usertoken: userToken,
+          username,
+        })
       ).data;
 
       if (userData.status) {
