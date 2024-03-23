@@ -243,10 +243,6 @@
   .profileContainer {
     > .bottomcomponents {
       > .posts {
-        grid-template-columns: repeat(3, 210px);
-        place-items: center;
-        gap: 5px;
-
         > img {
           height: 150px;
         }
@@ -262,6 +258,7 @@
     > .bottomcomponents {
       > .posts {
         flex-wrap: wrap;
+        justify-content: center;
 
         > img {
           height: 120px;
@@ -345,10 +342,12 @@
       width: 100%;
 
       > .posts {
-        > .userPost > img {
-          height: 140px;
-          width: 140px;
-          image-rendering: pixelated;
+        > .userPost {
+          > img {
+            height: 140px;
+            width: 140px;
+            image-rendering: pixelated;
+          }
         }
 
         > .noPost {

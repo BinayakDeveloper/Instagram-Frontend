@@ -30,9 +30,9 @@ import "./styles/index.scss";
 
 function App() {
   useEffect(() => {
-    document.addEventListener("contextmenu", (e) => {
-      e.preventDefault();
-    });
+    // document.addEventListener("contextmenu", (e) => {
+    //   e.preventDefault();
+    // });
     document.addEventListener("keydown", (e) => {
       if (e.key === "F12") e.preventDefault();
       else if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "i")
@@ -72,6 +72,7 @@ function App() {
               Leftdashboard={Leftdashboard}
               Dashboardnav={Dashboardnav}
               Componentloader={Componentloader}
+              Userloader={Userloader}
             />
           }
         />

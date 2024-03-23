@@ -58,7 +58,7 @@ function Create({ Leftdashboard, Dashboardnav, Componentloader }) {
   async function uploadPost(e) {
     e.preventDefault();
     let imgData = e.target.files[0];
-    if (imgData.size > 5000000) {
+    if (imgData.size > 4000000) {
       toast.error("File size too large");
     } else {
       setFile(imgData);

@@ -37,11 +37,13 @@ function Profile({ Leftdashboard, Dashboardnav, Componentloader }) {
           document.title = `${userData.userInfo.name} (@${userData.userInfo.username}) • Instagram photos`;
           setUserData(userData.userInfo);
           setLoaded(true);
-          if (bioNull === false) {
-            document.getElementsByClassName(
-              `${profilecss.bio}`
-            )[0].innerText = `${userData.userInfo.bio}`;
-          }
+          try {
+            if (bioNull === false) {
+              document.getElementsByClassName(
+                `${profilecss.bio}`
+              )[0].innerText = `${userData.userInfo.bio}`;
+            }
+          } catch (e) {}
           setBioNull(false);
         } else {
           toast.error(userData.response);

@@ -1,0 +1,119 @@
+.postBoxContainer {
+  width: 100%;
+
+  > .postBoxComponents {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    > .topComponents {
+      position: sticky;
+      top: 0;
+      background-color: black;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid rgb(61, 61, 61);
+      padding: 0.5rem;
+      width: 100%;
+
+      > .topLeft {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+
+        > .userDp {
+          > a > img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            margin-bottom: -6px;
+          }
+        }
+
+        > .usernameLocation {
+          font-size: 1.1rem;
+          font-weight: 500;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          flex-direction: column;
+
+          > .location > p {
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+
+    > .middleComponents {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      > .userPost {
+        > img {
+          height: 550px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .postBoxContainer {
+    > .postBoxComponents {
+      > .topComponents {
+        > .topLeft {
+          > .userDp {
+            > a > img {
+              height: 40px;
+              width: 40px;
+            }
+          }
+
+          > .usernameLocation {
+            font-size: 1rem;
+
+            > .location > p {
+              font-size: 0.8em;
+            }
+          }
+        }
+      }
+
+      > .middleComponents {
+        > .userPost {
+          > img {
+            height: 330px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .postBoxContainer {
+    > .postBoxComponents {
+      > .topComponents {
+        border: 0;
+        padding: 8px 10px 10px 10px;
+      }
+
+      > .middleComponents {
+        > .userPost {
+          > img {
+            height: 100%;
+            min-height: 300px;
+            width: 100vw;
+          }
+        }
+      }
+    }
+  }
+}
