@@ -3,14 +3,10 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-import Leftdashboard from "./Leftdashboard";
-import Dashboardnav from "./Dashboardnav";
-import Componentloader from "./Componentloader";
-
 // Styles
 import sharecss from "../../styles/Dashboard Styles/shareprofile.module.scss";
 
-function Shareprofile() {
+function Shareprofile({ Leftdashboard, Dashboardnav, Componentloader }) {
   const navigate = useNavigate();
 
   const [loaded, setLoaded] = useState(false);

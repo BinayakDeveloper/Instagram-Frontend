@@ -50,6 +50,7 @@ function User() {
           if (userData.response === "Redirect to profile") {
             navigate("/dashboard/profile");
           } else {
+            document.title = `${userData.searchedUserInfo.name} (@${userData.searchedUserInfo.username}) • Instagram photos`;
             setUserData(userData.searchedUserInfo);
             setValidPage(true);
             setBioLoad(true);

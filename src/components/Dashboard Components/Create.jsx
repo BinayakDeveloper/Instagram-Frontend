@@ -3,11 +3,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
-// Components
-import Leftdashboard from "./Leftdashboard.jsx";
-import Dashboardnav from "./Dashboardnav.jsx";
-import Componentloader from "./Componentloader.jsx";
-
 // Styles
 import createcss from "../../styles/Dashboard Styles/createpost.module.scss";
 
@@ -17,7 +12,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import avatar from "../../assets/avatar.png";
 import { HiOutlineMapPin } from "react-icons/hi2";
 
-function Create() {
+function Create({ Leftdashboard, Dashboardnav, Componentloader }) {
   const navigate = useNavigate();
 
   // const stages = ["imageselection", "previewimage", "imagecaption","imageuploading"];

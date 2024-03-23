@@ -4,11 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { HashLink } from "react-router-hash-link";
 
-// Components
-import Leftdashboard from "./Leftdashboard";
-import Dashboardnav from "./Dashboardnav";
-import Componentloader from "./Componentloader";
-
 // Style
 import profilecss from "../../styles/Dashboard Styles/profile.module.scss";
 
@@ -17,7 +12,7 @@ import userAvatar from "../../assets/avatar.png";
 import { FaLock } from "react-icons/fa";
 import { IoCameraOutline } from "react-icons/io5";
 
-function Profile() {
+function Profile({ Leftdashboard, Dashboardnav, Componentloader }) {
   const navigate = useNavigate();
 
   const [userData, setUserData] = useState({});
@@ -42,6 +37,7 @@ function Profile() {
         ).data;
 
         if (userData.status) {
+          document.title = `${userData.userInfo.name} (@${userData.userInfo.username}) • Instagram photos`;
           setUserData(userData.userInfo);
           setLoaded(true);
           if (bioNull === false) {
@@ -61,6 +57,10 @@ function Profile() {
 
       getUserInfo();
     }
+
+    return () => {
+      document.title = "Instagram";
+    };
   }, [navigate, bioNull]);
 
   return (
@@ -76,16 +76,18 @@ function Profile() {
         <div className="mainContent">
           <Dashboardnav />
           {loaded ? (
-            <Userprofile
-              profilePic={userData.profilePic}
-              username={userData.username}
-              name={userData.name}
-              privateStatus={userData.privateStatus}
-              posts={userData.posts}
-              followers={userData.followers}
-              following={userData.following}
-              loaded={loaded}
-            />
+            <>
+              <Userprofile
+                profilePic={userData.profilePic}
+                username={userData.username}
+                name={userData.name}
+                privateStatus={userData.privateStatus}
+                posts={userData.posts}
+                followers={userData.followers}
+                following={userData.following}
+                loaded={loaded}
+              />
+            </>
           ) : (
             <Componentloader />
           )}
@@ -180,8 +182,15 @@ function Userprofile({
             {posts.length === 0 ? (
               <NoPost />
             ) : (
-              posts.reverse().map(({ postUrl }, ind) => {
-                return <Post url={postUrl} ind={ind} key={ind} />;
+              posts.reverse().map(({ postUrl, postToken }, ind) => {
+                return (
+                  <Post
+                    key={ind}
+                    url={postUrl}
+                    username={username}
+                    id={postToken}
+                  />
+                );
               })
             )}
           </div>
@@ -202,11 +211,17 @@ function NoPost() {
   );
 }
 
-function Post({ url, ind }) {
+function Post({ url, username, id }) {
+  const navigate = useNavigate();
   return (
     <>
-      <div className={profilecss.userPost}>
-        <img src={url} alt={"Post " + ind} />
+      <div
+        className={profilecss.userPost}
+        onClick={() => {
+          navigate(`/dashboard/post/${username}/${id}`);
+        }}
+      >
+        <img src={url} alt={"Post "} />
       </div>
     </>
   );

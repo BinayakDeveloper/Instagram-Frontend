@@ -3,12 +3,6 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
-// Components
-import Leftdashboard from "./Leftdashboard";
-import Dashboardnav from "./Dashboardnav";
-import Userloader from "./Userloader";
-import Componentloader from "./Componentloader";
-
 // Style
 import searchcss from "../../styles/Dashboard Styles/search.module.scss";
 
@@ -16,7 +10,7 @@ import searchcss from "../../styles/Dashboard Styles/search.module.scss";
 import avatar from "../../assets/avatar.png";
 import { FaChevronLeft } from "react-icons/fa";
 
-function Search() {
+function Search({ Leftdashboard, Dashboardnav, Componentloader, Userloader }) {
   const navigate = useNavigate();
 
   const [token, setToken] = useState("");
@@ -118,6 +112,7 @@ function Search() {
               searchUser={searchUser}
               noUserText={noUserText}
               searchUserloaded={searchUserloaded}
+              Userloader={Userloader}
             />
           ) : (
             <Componentloader />
@@ -128,7 +123,13 @@ function Search() {
   );
 }
 
-function Searchuser({ users, searchUser, noUserText, searchUserloaded }) {
+function Searchuser({
+  users,
+  searchUser,
+  noUserText,
+  searchUserloaded,
+  Userloader,
+}) {
   return (
     <>
       <div className={searchcss.searchcontainer}>

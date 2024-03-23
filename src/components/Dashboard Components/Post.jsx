@@ -3,10 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
-// Styles
-// import dashboardcss from "../styles/Dashboard Styles/dashboard.module.scss";
-
-function Dashboard({ Leftdashboard, Dashboardnav, Componentloader }) {
+function Post({ Leftdashboard, Dashboardnav, Componentloader }) {
   const navigate = useNavigate();
   const [loaded, setLoaded] = useState(false);
 
@@ -48,17 +45,18 @@ function Dashboard({ Leftdashboard, Dashboardnav, Componentloader }) {
         position="top-center"
         containerStyle={{ fontWeight: "bold", letterSpacing: "0.8px" }}
       />
+
       <div className="dashboardContainer">
         <div className="leftSide">
           <Leftdashboard />
         </div>
         <div className="mainContent">
           <Dashboardnav />
-          {loaded ? <h3>Dashboard</h3> : <Componentloader />}
+          {loaded ? <h3>POST</h3> : <Componentloader />}
         </div>
       </div>
     </>
   );
 }
 
-export default Dashboard;
+export default Post;

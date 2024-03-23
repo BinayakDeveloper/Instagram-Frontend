@@ -1,7 +1,4 @@
-import Leftdashboard from "./Leftdashboard";
-import Dashboardnav from "./Dashboardnav";
-
-function Message() {
+function Message({ Leftdashboard, Dashboardnav, Componentloader }) {
   return (
     <>
       <div className="dashboardContainer">

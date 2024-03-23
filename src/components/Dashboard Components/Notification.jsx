@@ -6,23 +6,18 @@ import { Link, useNavigate } from "react-router-dom";
 // Styles
 import notcss from "../../styles/Dashboard Styles/notification.module.scss";
 
-// Components
-import Leftdashboard from "./Leftdashboard";
-import Dashboardnav from "./Dashboardnav";
-import Componentloader from "./Componentloader";
-
 // Assets
 import avatar from "../../assets/avatar.png";
 import { IoMdClose } from "react-icons/io";
 
-function Notification() {
+function Notification({ Leftdashboard, Dashboardnav, Componentloader }) {
   const navigate = useNavigate();
 
   const [userToken, setUserToken] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [followRequests, setFollowRequests] = useState([]);
   const [userData, setUserData] = useState([]);
-  const [notifications, setNotifications] = useState([]);
+  const [, /*notifications*/ setNotifications] = useState([]);
 
   useEffect(() => {
     let token = localStorage.getItem("user-ssid-token-ig");

@@ -6,16 +6,11 @@ import toast, { Toaster } from "react-hot-toast";
 // Style
 import editcss from "../../styles/Dashboard Styles/editcss.module.scss";
 
-// Components
-import Leftdashboard from "./Leftdashboard";
-import Dashboardnav from "./Dashboardnav";
-import Componentloader from "./Componentloader";
-
 // Assets
 import userAvatar from "../../assets/avatar.png";
 import { FaChevronLeft } from "react-icons/fa";
 
-function Editprofile() {
+function Editprofile({ Leftdashboard, Dashboardnav, Componentloader }) {
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});
   const [update, setUpdate] = useState(false);

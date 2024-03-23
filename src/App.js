@@ -16,7 +16,14 @@ import Profile from "./components/Dashboard Components/Profile";
 import User from "./components/Dashboard Components/User";
 import Editprofile from "./components/Dashboard Components/Editprofile";
 import Shareprofile from "./components/Dashboard Components/Shareprofile";
+import Post from "./components/Dashboard Components/Post";
 import Pnf from "./components/Pnf";
+
+// Common Components
+import Leftdashboard from "./components/Dashboard Components/Leftdashboard";
+import Dashboardnav from "./components/Dashboard Components/Dashboardnav";
+import Componentloader from "./components/Dashboard Components/Componentloader";
+import Userloader from "./components/Dashboard Components/Userloader";
 
 // Stylesheets
 import "./styles/index.scss";
@@ -47,15 +54,107 @@ function App() {
           path="/changepass/:forgottoken/:usertoken"
           Component={Changepass}
         />
-        <Route path="/dashboard" Component={Dashboard} />
-        <Route path="/dashboard/search" Component={Search} />
-        <Route path="/dashboard/create" Component={Create} />
-        <Route path="/dashboard/notification" Component={Notification} />
-        <Route path="/dashboard/message" Component={Message} />
-        <Route path="/dashboard/profile" Component={Profile} />
-        <Route path="/dashboard/editprofile" Component={Editprofile} />
-        <Route path="/dashboard/shareprofile" Component={Shareprofile} />
-        <Route path="/dashboard/search/:username" Component={User} />
+        <Route
+          path="/dashboard"
+          element={
+            <Dashboard
+              Leftdashboard={Leftdashboard}
+              Dashboardnav={Dashboardnav}
+              Componentloader={Componentloader}
+              Userloader={Userloader}
+            />
+          }
+        />
+        <Route
+          path="/dashboard/search"
+          element={
+            <Search
+              Leftdashboard={Leftdashboard}
+              Dashboardnav={Dashboardnav}
+              Componentloader={Componentloader}
+            />
+          }
+        />
+        <Route
+          path="/dashboard/create"
+          element={
+            <Create
+              Leftdashboard={Leftdashboard}
+              Dashboardnav={Dashboardnav}
+              Componentloader={Componentloader}
+            />
+          }
+        />
+        <Route
+          path="/dashboard/notification"
+          element={
+            <Notification
+              Leftdashboard={Leftdashboard}
+              Dashboardnav={Dashboardnav}
+              Componentloader={Componentloader}
+            />
+          }
+        />
+        <Route
+          path="/dashboard/message"
+          element={
+            <Message
+              Leftdashboard={Leftdashboard}
+              Dashboardnav={Dashboardnav}
+              Componentloader={Componentloader}
+            />
+          }
+        />
+        <Route
+          path="/dashboard/profile"
+          element={
+            <Profile
+              Leftdashboard={Leftdashboard}
+              Dashboardnav={Dashboardnav}
+              Componentloader={Componentloader}
+            />
+          }
+        />
+        <Route
+          path="/dashboard/editprofile"
+          element={
+            <Editprofile
+              Leftdashboard={Leftdashboard}
+              Dashboardnav={Dashboardnav}
+              Componentloader={Componentloader}
+            />
+          }
+        />
+        <Route
+          path="/dashboard/shareprofile"
+          element={
+            <Shareprofile
+              Leftdashboard={Leftdashboard}
+              Dashboardnav={Dashboardnav}
+              Componentloader={Componentloader}
+            />
+          }
+        />
+        <Route
+          path="/dashboard/search/:username"
+          element={
+            <User
+              Leftdashboard={Leftdashboard}
+              Dashboardnav={Dashboardnav}
+              Componentloader={Componentloader}
+            />
+          }
+        />
+        <Route
+          path="/dashboard/post/:username/:postid"
+          element={
+            <Post
+              Leftdashboard={Leftdashboard}
+              Dashboardnav={Dashboardnav}
+              Componentloader={Componentloader}
+            />
+          }
+        />
         <Route path="*" Component={Pnf} />
       </Routes>
     </Router>
