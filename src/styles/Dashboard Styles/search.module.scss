@@ -1,0 +1,159 @@
+.searchcontainer {
+  display: flex;
+  justify-content: center;
+
+  > .searchcomponents {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 80%;
+    padding: 2rem 0;
+
+    > .searchheading {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+
+      > svg {
+        margin-bottom: -2px;
+        font-size: 1.1rem;
+        cursor: pointer;
+      }
+
+      > p {
+        font-size: 1.3rem;
+      }
+    }
+
+    > .input {
+      > input {
+        margin-top: 10px;
+        width: 100%;
+        background: none;
+        color: white;
+        background: rgb(38, 38, 38);
+        border: 2px solid transparent;
+        outline: 0;
+        padding: 13px 15px;
+        border-radius: 10px;
+        font-size: 16.5px;
+        transition: 0.2s;
+
+        &:focus {
+          border: 2px solid rgb(200, 200, 200);
+        }
+      }
+    }
+
+    > .users {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 10px;
+    }
+  }
+}
+
+// User Styling
+a {
+  text-decoration: none;
+  color: white;
+
+  > .userContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > .userComponents {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 7px;
+
+      > .profilePic {
+        > img {
+          background-color: white;
+          height: 55px;
+          width: 55px;
+          border-radius: 50%;
+          border: 2px solid rgb(38, 38, 38);
+          padding: 1px;
+        }
+      }
+
+      > .userInfo {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+
+        > p:first-child {
+          font-weight: 500;
+          opacity: 1;
+          font-size: 1.1rem;
+        }
+
+        > p:last-child {
+          font-weight: 100;
+          opacity: 0.8;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+// Media Queries
+
+@media screen and (max-width: 500px) {
+  .searchcontainer {
+    > .searchcomponents {
+      gap: 0;
+      width: 95%;
+      padding: 0.8rem 0;
+
+      > .searchheading {
+        > a > svg {
+          font-size: 1.1rem;
+        }
+        > p {
+          font-size: 1.1rem;
+        }
+      }
+
+      > .users {
+        > h1 {
+          font-size: 1.1rem;
+          font-weight: 500;
+        }
+      }
+
+      > .input {
+        > input {
+          font-size: 16px;
+          padding: 10px;
+        }
+      }
+    }
+  }
+
+  a > .userContainer {
+    > .userComponents {
+      > .profilePic {
+        > img {
+          height: 50px;
+        }
+      }
+
+      > .userInfo {
+        > p:first-child {
+          font-size: 1rem;
+        }
+        > p:last-child {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}

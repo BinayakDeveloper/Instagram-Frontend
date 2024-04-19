@@ -1,0 +1,312 @@
+.createContainer {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > .createComponents {
+    background-color: #272726;
+    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 13px;
+    overflow: hidden;
+
+    > .uploadingStatus {
+      height: 70vh;
+      width: 30vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+
+      > .uploadLoader {
+        height: 50px;
+        width: 50px;
+        border: 8px solid rgb(0, 212, 0);
+        border-bottom: 8px solid transparent;
+        border-radius: 50%;
+        animation: rotateLoader 2s linear infinite forwards;
+
+        @keyframes rotateLoader {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      }
+    }
+
+    > .heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1.5px solid #505050;
+      padding: 10px;
+
+      > svg {
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      > label {
+        color: #0194f6;
+        cursor: pointer;
+      }
+    }
+
+    > .uploadArea {
+      height: 60vh;
+      width: 30vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      > form {
+        display: none;
+      }
+
+      > .demoImg {
+        > img {
+          height: 100px;
+          width: 100px;
+        }
+      }
+
+      > .labelArea {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+
+        > label:first-child {
+          font-size: 22px;
+        }
+
+        > label:last-child {
+          background-color: #1877f2;
+          padding: 5px 15px;
+          border-radius: 10px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    > .previewImg {
+      padding: 1rem;
+      height: 60vh;
+      width: 30vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      > img {
+        object-fit: contain;
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    > .captionContainer {
+      display: flex;
+
+      > .previewImg2 {
+        padding: 1rem;
+        height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #131312;
+        z-index: 5;
+
+        > img {
+          object-fit: contain;
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+      > .captionArea {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 10px;
+
+        // Entry Animation
+        position: relative;
+        animation: entryAnimation 0.3s ease-in-out 1 forwards;
+
+        @keyframes entryAnimation {
+          0% {
+            left: -100%;
+            width: 0;
+          }
+          100% {
+            left: 0;
+            width: 300px;
+          }
+        }
+
+        > .userInfo {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 5px;
+
+          > .userdp {
+            > img {
+              height: 30px;
+              width: 30px;
+              border-radius: 50%;
+              margin-bottom: -3px;
+            }
+          }
+        }
+
+        > textarea {
+          height: 45%;
+          width: 100%;
+          background: transparent;
+          border: 0;
+          outline: 0;
+          resize: none;
+          color: white;
+          font-size: 16px;
+          letter-spacing: 0.5px;
+          padding-right: 5px;
+
+          &::placeholder {
+            letter-spacing: 0.3px;
+            font-size: 16px;
+            color: rgb(147, 147, 147);
+          }
+
+          &::-webkit-scrollbar {
+            width: 2px;
+            background-color: black;
+            border-radius: 10px;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background-color: white;
+            border-radius: 10px;
+          }
+        }
+
+        > .locationInp {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          > input {
+            background: transparent;
+            border: 0;
+            outline: 0;
+            width: 100%;
+            font-size: 16px;
+            color: white;
+            padding-right: 5px;
+
+            &::placeholder {
+              color: rgb(147, 147, 147);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .createContainer {
+    > .createComponents {
+      width: 70vw;
+
+      > .uploadingStatus,
+      .uploadArea,
+      .previewImg {
+        height: 40vh;
+        width: 70vw;
+      }
+
+      > .captionContainer {
+        flex-direction: column;
+
+        > .previewImg2 {
+          height: 30vh;
+          width: 100%;
+        }
+
+        > .captionArea {
+          min-width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .createContainer {
+    height: 84.9vh;
+
+    > .createComponents {
+      width: 90vw;
+
+      > .uploadingStatus {
+        width: 90vw;
+      }
+
+      > .uploadArea {
+        height: 50vh;
+        width: 90vw;
+
+        > .demoImg {
+          > img {
+            height: 80px;
+            width: 80px;
+          }
+        }
+
+        > .labelArea {
+          > label:first-child {
+            font-size: 16px;
+          }
+
+          > label:last-child {
+            font-size: 14px;
+          }
+        }
+      }
+
+      > .previewImg {
+        height: 50vh;
+        width: 90vw;
+      }
+
+      > .captionContainer {
+        > .previewImg2 {
+          height: auto;
+
+          > img {
+            object-fit: contain;
+            height: 190px;
+            width: 100%;
+          }
+        }
+
+        > .captionArea {
+          max-width: 70vw;
+        }
+      }
+    }
+  }
+}

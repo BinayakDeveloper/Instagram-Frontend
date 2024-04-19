@@ -1,0 +1,338 @@
+.editContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3rem 0;
+
+  > .editComponents {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+
+    > .heading {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      > svg {
+        margin-bottom: -5px;
+        font-size: 1.5rem;
+        display: none;
+        cursor: pointer;
+      }
+
+      > p {
+        font-size: 1.5rem;
+        font-weight: bold;
+        letter-spacing: 0.8px;
+      }
+    }
+
+    > .changeDp {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgb(38, 38, 38);
+      padding: 1rem;
+      border-radius: 20px;
+
+      > .leftComponent {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        > .oldPic {
+          > img {
+            border-radius: 50%;
+            margin-bottom: -4px;
+            height: 60px;
+            width: 60px;
+          }
+        }
+
+        > .userInfo {
+          > p:first-child {
+            font-weight: bold;
+            letter-spacing: 0.5px;
+          }
+
+          > p:last-child {
+            opacity: 0.8;
+          }
+        }
+      }
+
+      > .rightComponent {
+        > button {
+          border: 0;
+          outline: 0;
+          background: rgb(0, 149, 246);
+          color: white;
+          font-weight: 500;
+          letter-spacing: 0.8px;
+          padding: 8px 10px;
+          border-radius: 10px;
+          cursor: pointer;
+
+          &:hover {
+            background: rgb(0, 119, 246);
+          }
+        }
+      }
+    }
+
+    > .changeUserInfo {
+      width: 50%;
+
+      > form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        > .changeName,
+        .changeUserName,
+        .changeBio {
+          > p {
+            font-size: 1.2rem;
+            font-weight: 500;
+          }
+
+          > input,
+          textarea {
+            margin-top: 10px;
+            width: 100%;
+            background: none;
+            color: white;
+            background: rgb(38, 38, 38);
+            border: 2px solid transparent;
+            outline: 0;
+            padding: 13px 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: 0.2s;
+
+            &:focus {
+              border: 2px solid rgb(200, 200, 200);
+            }
+          }
+
+          textarea {
+            resize: none;
+            height: 100px;
+            padding: 2px 5px;
+
+            &::-webkit-scrollbar {
+              display: none;
+            }
+          }
+        }
+
+        > .privateStatus {
+          display: flex;
+          justify-content: space-between;
+
+          > p {
+            font-size: 1.2rem;
+            font-weight: 500;
+          }
+
+          > input {
+            width: 7%;
+            cursor: pointer;
+            border: 0;
+            outline: 0;
+          }
+        }
+
+        > .submitBtn {
+          margin-top: 10px;
+
+          > button {
+            width: 100%;
+            border: 0;
+            outline: 0;
+            background: rgb(0, 149, 246);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.8px;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+
+            &:hover {
+              background: rgb(0, 119, 246);
+            }
+          }
+        }
+
+        > .logOutBtn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 2px solid rgb(57, 57, 57);
+          padding: 5px 5px 8px 5px;
+          cursor: pointer;
+
+          > label {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .editContainer {
+    > .editComponents {
+      > .heading {
+        gap: 20px;
+        width: 95%;
+
+        > svg {
+          display: block;
+        }
+      }
+
+      > .changeDp,
+      .changeUserInfo {
+        width: 95%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .editContainer {
+    padding: 1rem 0 5rem 0;
+
+    > .editComponents {
+      > .heading {
+        > p {
+          font-size: 1.2rem;
+        }
+      }
+
+      > .changeDp {
+        padding: 1rem 0.7rem;
+
+        > .leftComponent > .oldPic > img {
+          height: 50px;
+          width: 50px;
+        }
+        > .leftComponent > .userInfo {
+          > p:first-child {
+            font-size: 1rem;
+          }
+
+          > p:last-child {
+            font-size: 0.9rem;
+          }
+        }
+        > .rightComponent {
+          > button {
+            font-size: 12px;
+            padding: 7px 5px;
+          }
+        }
+      }
+
+      > .changeUserInfo {
+        > form > .privateStatus > input {
+          width: 9%;
+        }
+      }
+    }
+  }
+}
+
+// Change DP
+
+.changeDpContainer {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > .dpComponents {
+    background: rgb(38, 38, 38);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    border-radius: 10px;
+
+    > .dpHeading {
+      text-align: center;
+      padding: 28px 0;
+
+      > p {
+        font-size: 1.2rem;
+      }
+    }
+
+    > .changingOptions {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+
+      > .uploadDp,
+      .removeDp,
+      .cancel {
+        width: 100%;
+        border-top: 1px solid rgb(88, 88, 88);
+        color: rgb(0, 149, 246);
+        text-align: center;
+        cursor: pointer;
+      }
+
+      > .uploadDp {
+        > form > input {
+          display: none;
+        }
+
+        > form > label {
+          cursor: pointer;
+        }
+
+        padding: 11px 0 7px 0;
+      }
+
+      > .removeDp {
+        padding: 11px 0 7px 0;
+        color: red;
+      }
+
+      > .cancel {
+        padding: 11px 0 11px 0;
+        color: white;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .changeDpContainer {
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    > .dpComponents {
+      width: 90%;
+    }
+  }
+}

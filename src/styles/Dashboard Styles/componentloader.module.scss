@@ -1,0 +1,25 @@
+.componentloader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  > .componentloadercomponents {
+    > img {
+      height: 100px;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .componentloader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    > .componentloadercomponents > img {
+      height: 70px;
+    }
+  }
+}

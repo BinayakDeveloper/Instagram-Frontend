@@ -1,0 +1,121 @@
+.notificationContainer {
+  > p {
+    margin: 8px 15px 0 15px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    font-size: 1.3rem;
+  }
+
+  > .reqContainer {
+    width: 100%;
+    padding: 15px;
+
+    > .reqComponents {
+      background-color: rgb(48, 48, 48);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      border-radius: 15px;
+
+      > a > .leftComponents {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+
+        > .profilePic {
+          > img {
+            height: 40px;
+            width: 40px;
+            background-color: white;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: -6px;
+          }
+        }
+
+        > .userInfo {
+          > p:first-child {
+            font-size: 1.2rem;
+          }
+
+          > p:last-child {
+            font-size: 0.9rem;
+            opacity: 0.8;
+          }
+        }
+      }
+
+      > .rightComponents {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+
+        > button {
+          background: rgb(0, 149, 246);
+          width: 100%;
+          border: 2px solid transparent;
+          outline: 0;
+          color: white;
+          font-weight: bold;
+          letter-spacing: 0.8px;
+          padding: 5px 10px;
+          border-radius: 15px;
+          cursor: pointer;
+        }
+        > svg {
+          font-size: 2rem;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.noNotification {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+
+  > svg {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .notificationContainer {
+    > p {
+      margin: 8px 10px 0 10px;
+      font-size: 1rem;
+    }
+    > .reqContainer {
+      padding: 10px 5px;
+
+      > .reqComponents {
+        padding: 10px 5px;
+        > a {
+          > .leftComponents {
+            > .userInfo {
+              > p:first-child {
+                font-size: 0.9rem;
+              }
+
+              > p:last-child {
+                font-size: 0.8rem;
+              }
+            }
+          }
+        }
+        > .rightComponents {
+          > button {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}

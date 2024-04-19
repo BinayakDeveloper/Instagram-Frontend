@@ -1,0 +1,365 @@
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 30px;
+  margin: 2rem 10rem;
+
+  > .topcomponents {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    > .userInfo {
+      width: 55%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+
+      > .userTopInfo {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        > .userImg {
+          > img {
+            background-color: white;
+            border-radius: 50%;
+            height: 150px;
+            width: 150px;
+            margin-bottom: -6px;
+            object-fit: contain;
+          }
+        }
+
+        > .sideInfo {
+          display: none;
+          flex-direction: column;
+          gap: 10px;
+
+          > p {
+            font-size: 1.3rem;
+            font-weight: bold;
+            letter-spacing: 0.8px;
+
+            > svg {
+              font-size: 1rem;
+              margin-right: 5px;
+            }
+          }
+
+          > .connectionInfo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+
+            > .noOfPosts,
+            .noOfFollowers,
+            .noOfFollowing {
+              > a > p {
+                font-weight: bold;
+                letter-spacing: 0.8px;
+                text-align: center;
+              }
+
+              > p {
+                font-weight: bold;
+                letter-spacing: 0.8px;
+                text-align: center;
+              }
+
+              > p:first-child {
+                font-size: 1.2rem;
+              }
+            }
+          }
+        }
+      }
+
+      > .mainInfo {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        > .name {
+          > p {
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 0.8px;
+
+            > svg {
+              font-size: 1rem;
+              margin-right: 5px;
+            }
+          }
+        }
+
+        > .connectionDetails {
+          margin-top: 5px;
+          display: flex;
+          width: max-content;
+          gap: 20px;
+
+          > p {
+            font-size: 1.2rem;
+            letter-spacing: 0.8px;
+          }
+        }
+
+        > .name {
+          margin-top: 5px;
+          margin-bottom: -5px;
+        }
+
+        > .bio {
+          font-size: 1.2rem;
+          margin: 5px 0 10px 0;
+        }
+
+        > .profileEditingSharing {
+          width: max-content;
+
+          > a {
+            width: 100%;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            background-color: white;
+            letter-spacing: 0.8px;
+            border-radius: 5px;
+            padding: 7px 15px;
+
+            &:last-child {
+              margin-left: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  > .bottomcomponents {
+    margin-bottom: 30px;
+    width: 100%;
+
+    > .category {
+      padding: 0 0 18px 0;
+      border-top: 1px solid rgb(71, 71, 71);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+
+      > p {
+        font-weight: bold;
+        letter-spacing: 0.8px;
+        border-top: 1px solid rgb(219, 219, 219);
+        padding-top: 18px;
+      }
+    }
+
+    > .posts {
+      min-width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      column-gap: 0.5rem;
+      row-gap: 0.2rem;
+
+      > .userPost {
+        > img {
+          height: 150px;
+          width: 150px;
+          object-fit: cover;
+          vertical-align: bottom;
+          cursor: pointer;
+        }
+      }
+
+      > .noPost {
+        margin-top: 40px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        > svg {
+          font-size: 6rem;
+          border: 2px solid white;
+          border-radius: 50%;
+          padding: 10px;
+        }
+
+        > label {
+          font-size: 23px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1370px) {
+  .profileContainer {
+    > .topcomponents {
+      > .userInfo {
+        gap: 15px;
+        width: 100%;
+        flex-direction: column;
+
+        > .userTopInfo {
+          > .userImg {
+            > img {
+              height: 130px;
+              width: 130px;
+            }
+          }
+
+          > .sideInfo {
+            display: flex;
+
+            > p:first-child {
+              display: none;
+            }
+          }
+        }
+
+        > .mainInfo {
+          > .connectionDetails {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 875px) {
+  .profileContainer {
+    > .bottomcomponents {
+      > .posts {
+        > img {
+          height: 150px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .profileContainer {
+    margin: 2rem;
+
+    > .bottomcomponents {
+      > .posts {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        > img {
+          height: 120px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 530px) {
+  .profileContainer {
+    margin: 0.8rem 0.6rem;
+
+    > .topcomponents {
+      > .userInfo {
+        > .userTopInfo {
+          align-items: center;
+          gap: 10px;
+
+          > .userImg {
+            > img {
+              height: 65px;
+              width: 65px;
+            }
+          }
+
+          > .sideInfo {
+            > p {
+              font-size: 1rem;
+            }
+
+            > .connectionInfo {
+              margin-top: 10px;
+              gap: 15px;
+
+              > .noOfPosts,
+              .noOfFollowers,
+              .noOfFollowing {
+                > p {
+                  font-size: 14px;
+                }
+              }
+            }
+          }
+        }
+
+        > .mainInfo {
+          width: 100%;
+          gap: 5px;
+
+          > .name {
+            > p {
+              font-size: 1rem;
+
+              > svg {
+                font-size: 0.8rem;
+              }
+            }
+          }
+
+          > .bio {
+            margin: 0.3rem 0.2rem;
+            gap: 2px;
+            font-size: 0.9rem;
+          }
+
+          > .profileEditingSharing {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+
+    > .bottomcomponents {
+      width: 100%;
+
+      > .posts {
+        row-gap: 10px;
+        > .userPost {
+          > img {
+            height: 100px;
+            width: 100px;
+          }
+        }
+
+        > .noPost {
+          > svg {
+            font-size: 4rem;
+          }
+
+          > label {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+}

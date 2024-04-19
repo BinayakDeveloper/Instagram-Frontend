@@ -1,0 +1,255 @@
+.postBoxContainer {
+  width: 100%;
+
+  > .postBoxComponents {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    > .topComponents {
+      position: sticky;
+      top: 0;
+      background-color: black;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid rgb(61, 61, 61);
+      padding: 0.7rem;
+      width: 100%;
+
+      > .topLeft {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+
+        > .backBtn {
+          display: flex;
+          align-items: center;
+          > svg {
+            font-size: 1.2rem;
+            cursor: pointer;
+          }
+        }
+
+        > .userDp {
+          > a > img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            margin-bottom: -6px;
+          }
+        }
+
+        > .usernameLocation {
+          font-size: 1rem;
+          font-weight: 500;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          flex-direction: column;
+
+          > .location > p {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+
+    > .middleComponents {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      > .userPost {
+        > img {
+          height: 550px;
+          width: 100%;
+          cursor: pointer;
+        }
+      }
+    }
+
+    > .bottomComponents {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      font-size: 2rem;
+      gap: 10px;
+      padding: 1rem 0 0 1rem;
+
+      > .likebtn {
+        > svg {
+          cursor: pointer;
+          font-size: 2rem;
+
+          &:last-child {
+            color: red;
+          }
+        }
+
+        > .showLike {
+          display: block;
+        }
+
+        > .hideLike {
+          display: none;
+        }
+      }
+
+      > .sharebtn {
+        cursor: pointer;
+      }
+    }
+
+    > .otherDetails {
+      padding-left: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 1rem;
+
+      > .likeCounter {
+        font-size: 1.2rem;
+      }
+
+      > .captionArea {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+
+        > p {
+          font-size: 1.3rem;
+          font-weight: 500;
+          letter-spacing: 0.5px;
+        }
+
+        > label {
+          margin-top: 3px;
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+}
+
+.postUserPrivate {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 30px;
+  padding: 1rem;
+
+  > svg {
+    font-size: 5rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .postBoxContainer {
+    > .postBoxComponents {
+      > .topComponents {
+        > .topLeft {
+          > .userDp {
+            > a > img {
+              height: 40px;
+              width: 40px;
+            }
+          }
+
+          > .usernameLocation {
+            font-size: 1rem;
+
+            > .location > p {
+              font-size: 0.8em;
+            }
+          }
+        }
+      }
+
+      > .middleComponents {
+        > .userPost {
+          > img {
+            max-height: 330px;
+          }
+        }
+      }
+
+      > .bottomComponents {
+        padding: 0 0 0 0.3rem;
+
+        > .likebtn {
+          > svg {
+            font-size: 1.5rem;
+          }
+        }
+
+        > .sharebtn {
+          > svg {
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      > .otherDetails {
+        padding-left: 0.5rem;
+
+        > .likeCounter {
+          margin-top: -5px;
+          > label {
+            font-size: 0.95rem;
+          }
+        }
+
+        > .captionArea {
+          gap: 5px;
+
+          > p {
+            font-size: 1rem;
+            letter-spacing: 0.1px;
+          }
+
+          > label {
+            margin-top: 0px;
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .postBoxContainer {
+    > .postBoxComponents {
+      > .topComponents {
+        border: 0;
+        padding: 8px 10px 10px 10px;
+      }
+
+      > .middleComponents {
+        > .userPost {
+          > img {
+            min-height: 300px;
+            max-height: 300px;
+            object-fit: contain;
+            width: 100vw;
+            margin-bottom: -4px;
+          }
+        }
+      }
+    }
+  }
+
+  .postUserPrivate {
+    > h2 {
+      font-size: 16px;
+    }
+    > svg {
+      font-size: 3.2em;
+    }
+  }
+}

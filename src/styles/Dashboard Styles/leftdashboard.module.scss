@@ -1,0 +1,185 @@
+.leftDashboardContainer {
+  width: min-content;
+
+  > .leftComponents {
+    background: #000;
+    padding: 2.5rem 5rem 2rem 1.6rem;
+    height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: space-between;
+    border-right: 1px solid rgb(151, 151, 151);
+
+    > .topComponents {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 30px;
+
+      > a {
+        > img {
+          height: 30px;
+        }
+
+        > svg {
+          display: none;
+          font-size: 1.9rem;
+          color: white;
+        }
+      }
+
+      > .pageLinks {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        > .home,
+        .searchUser,
+        .message,
+        .notification,
+        .create,
+        .profile {
+          > a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+            > p {
+              font-family: Arial, Helvetica, sans-serif;
+              font-size: 1.05rem;
+              color: white;
+              font-weight: bold;
+              letter-spacing: 0.9px;
+            }
+
+            > svg {
+              color: white;
+              font-size: 1.7rem;
+              margin-bottom: 5px;
+            }
+          }
+        }
+      }
+
+      > .create {
+        > a {
+          > svg {
+            border-radius: 10px;
+          }
+        }
+      }
+    }
+
+    /*> .more {
+      color: white;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 20px;
+      cursor: pointer;
+
+      > svg {
+        color: white;
+        font-size: 1.7rem;
+      }
+
+      > p {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1.05rem;
+        color: white;
+        font-weight: bold;
+        letter-spacing: 0.9px;
+      }
+    }*/
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .leftDashboardContainer {
+    > .leftComponents {
+      padding: 2.5rem 1rem;
+
+      > .topComponents {
+        gap: 50px;
+
+        > a {
+          > img {
+            display: none;
+          }
+          > svg {
+            display: block;
+          }
+        }
+
+        > .pageLinks {
+          > .home,
+          .searchUser,
+          .message,
+          .notification,
+          .create,
+          .profile {
+            > a > p {
+              display: none;
+            }
+          }
+        }
+      }
+      /*> .more {
+        > p {
+          display: none;
+        }
+      }*/
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .leftDashboardContainer {
+    border-top: 1px solid rgb(86, 86, 86);
+    position: absolute;
+    bottom: 0;
+    z-index: 100;
+    width: 100%;
+
+    > .leftComponents {
+      border-right: 0;
+      height: min-content;
+      padding: 10px 15px 5px 15px;
+
+      > .topComponents {
+        > a {
+          display: none;
+        }
+
+        > .pageLinks {
+          flex-direction: row;
+          justify-content: space-between;
+          gap: 10px;
+
+          > .home,
+          .searchUser,
+          .message,
+          .notification,
+          .create,
+          .profile {
+            > a > svg {
+              font-size: 1.6rem;
+            }
+          }
+
+          > .message {
+            display: none;
+          }
+        }
+      }
+
+      /*> .more {
+        display: none;
+      }*/
+    }
+  }
+}
