@@ -29,7 +29,7 @@ import Userloader from "./components/Dashboard Components/Userloader";
 import "./styles/index.scss";
 
 function App() {
-  /*useEffect(() => {
+  useEffect(() => {
     document.addEventListener("contextmenu", (e) => {
       e.preventDefault();
     });
@@ -42,7 +42,7 @@ function App() {
       else if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "j")
         e.preventDefault();
     });
-  });*/
+  });
   return (
     <Router>
       <Routes>

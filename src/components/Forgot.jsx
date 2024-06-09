@@ -83,9 +83,10 @@ function Forgot() {
             <div className={forgotcss.input}>
               <form method="post" onSubmit={forgotValidate}>
                 <input
-                  type="email"
+                  type="text"
                   name="email"
                   placeholder="Email, Phone, or Username"
+                  spellCheck="false"
                   required
                 />
                 <button type="submit">Send reset link</button>

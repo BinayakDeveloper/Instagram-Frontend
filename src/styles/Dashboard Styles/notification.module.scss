@@ -1,22 +1,26 @@
 .notificationContainer {
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
   > p {
     margin: 8px 15px 0 15px;
-    font-weight: 500;
+    font-weight: bold;
     letter-spacing: 0.8px;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+    margin: 15px 0;
   }
 
   > .reqContainer {
-    width: 100%;
-    padding: 15px;
-
     > .reqComponents {
       background-color: rgb(48, 48, 48);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 15px;
+      padding: 15px 15px;
       border-radius: 15px;
+      gap: 10px;
 
       > a > .leftComponents {
         display: flex;
@@ -88,6 +92,7 @@
 
 @media screen and (max-width: 500px) {
   .notificationContainer {
+    padding: 0 5px;
     > p {
       margin: 8px 10px 0 10px;
       font-size: 1rem;
@@ -113,6 +118,105 @@
         > .rightComponents {
           > button {
             font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Notification Content Styling
+
+.notificationHeading {
+  padding: 15px 0 8px 0;
+}
+
+.followContainer {
+  > .followUserInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 0;
+
+    > a > .followUserLeft {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+
+      > .followUserImg {
+        > img {
+          height: 45px;
+          width: 45px;
+          border-radius: 50%;
+        }
+      }
+
+      > .followMessage {
+        > p {
+          font-size: 1.1rem;
+        }
+      }
+    }
+
+    > .followUserRight {
+      > .followButton {
+        > button.followingBtn,
+        button.requestSentBtn {
+          border: 0;
+          outline: 0;
+          cursor: pointer;
+          background-color: rgb(50, 50, 50);
+          color: white;
+          padding: 7px 13px;
+          border-radius: 6px;
+          font-weight: bold;
+          letter-spacing: 0.3px;
+        }
+
+        > button.followBackBtn {
+          border: 0;
+          outline: 0;
+          cursor: pointer;
+          background-color: rgb(74, 86, 255);
+          color: white;
+          padding: 7px 13px;
+          border-radius: 6px;
+          font-weight: bold;
+          letter-spacing: 0.3px;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .notificationHeading {
+    padding: 10px 0 5px 0;
+    font-size: 0.85rem;
+  }
+
+  .followContainer {
+    > .followUserInfo {
+      gap: 10px;
+      > a > .followUserLeft {
+        > .followUserImg > img {
+          height: 35px;
+          width: 35px;
+        }
+
+        > .followMessage > p {
+          font-size: 0.95rem;
+        }
+      }
+
+      > .followUserRight {
+        > .followButton {
+          > button.followBackBtn,
+          button.followingBtn,
+          button.requestSentBtn {
+            font-size: 0.8rem;
           }
         }
       }
