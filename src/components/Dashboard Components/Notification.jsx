@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -21,58 +21,63 @@ function Notification({ Leftdashboard, Dashboardnav, Componentloader }) {
   const [notifications, setNotifications] = useState([]);
   const [notificationUserData, setNotificationUserData] = useState([]);
 
-  async function getNotifications(token) {
-    let notifications = (
-      await axios.post("https://instameserver.vercel.app/getnotifications", {
-        authkey: process.env.REACT_APP_AUTH_KEY,
-        usertoken: token,
-      })
-    ).data;
-
-    if (notifications.status) {
-      let followRequestsList = notifications.response.followRequests;
-      if (followRequestsList.length !== 0) {
-        let usersResponse = (
-          await axios.post("https://instameserver.vercel.app/getbulkuserdata", {
-            authkey: process.env.REACT_APP_AUTH_KEY,
-            tokenList: followRequestsList,
-          })
-        ).data;
-
-        setUserData(usersResponse.users);
-      }
-
-      let notificationData = notifications.response.notifications;
-      let notificationTokens = [];
-      Array.from(notificationData).forEach((data) => {
-        notificationTokens.push(data.friendToken);
-      });
-
-      let notificationUserData = await axios.post(
-        "https://instameserver.vercel.app/getbulkuserdata",
-        {
+  const getNotifications = useCallback(
+    async (token) => {
+      let notifications = (
+        await axios.post("https://instameserver.vercel.app/getnotifications", {
           authkey: process.env.REACT_APP_AUTH_KEY,
-          tokenList: notificationTokens,
-        }
-      );
+          usertoken: token,
+        })
+      ).data;
 
-      setNotificationUserData(notificationUserData.data.users);
-      setFollowRequests(notifications.response.followRequests);
-      setNotifications(notifications.response.notifications);
-    } else {
-      toast.error(notifications.response);
-      localStorage.removeItem("user-ssid-token-ig");
-      navigate("/");
-    }
-    setLoaded(true);
-  }
+      if (notifications.status) {
+        let followRequestsList = notifications.response.followRequests;
+        if (followRequestsList.length !== 0) {
+          let usersResponse = (
+            await axios.post(
+              "https://instameserver.vercel.app/getbulkuserdata",
+              {
+                authkey: process.env.REACT_APP_AUTH_KEY,
+                tokenList: followRequestsList,
+              }
+            )
+          ).data;
+
+          setUserData(usersResponse.users);
+        }
+
+        let notificationData = notifications.response.notifications;
+        let notificationTokens = [];
+        Array.from(notificationData).forEach((data) => {
+          notificationTokens.push(data.friendToken);
+        });
+
+        let notificationUserData = await axios.post(
+          "https://instameserver.vercel.app/getbulkuserdata",
+          {
+            authkey: process.env.REACT_APP_AUTH_KEY,
+            tokenList: notificationTokens,
+          }
+        );
+
+        setNotificationUserData(notificationUserData.data.users);
+        setFollowRequests(notifications.response.followRequests);
+        setNotifications(notifications.response.notifications);
+      } else {
+        toast.error(notifications.response);
+        localStorage.removeItem("user-ssid-token-ig");
+        navigate("/");
+      }
+      setLoaded(true);
+    },
+    [navigate]
+  );
 
   useEffect(() => {
     let token = localStorage.getItem("user-ssid-token-ig");
-    setUserToken(token);
-
     getNotifications(token);
-  }, [setUserToken]);
+    setUserToken(token);
+  }, [setUserToken, getNotifications]);
 
   return (
     <>
