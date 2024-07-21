@@ -138,23 +138,29 @@
     justify-content: space-between;
     padding: 5px 0;
 
-    > a > .followUserLeft {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
+    > a {
+      text-decoration: none;
 
-      > .followUserImg {
-        > img {
-          height: 45px;
-          width: 45px;
-          border-radius: 50%;
+      > .followUserLeft {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+
+        > .followUserImg {
+          > img {
+            height: 45px;
+            width: 45px;
+            border-radius: 50%;
+          }
         }
-      }
 
-      > .followMessage {
-        > p {
-          font-size: 1.1rem;
+        > .followMessage {
+          color: white;
+          text-decoration: none;
+          > p {
+            font-size: 1.1rem;
+          }
         }
       }
     }
